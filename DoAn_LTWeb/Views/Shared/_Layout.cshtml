@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MusicShop</title>
+    <link href="~Content/Site.css" rel="stylesheet" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="bg-black border-bottom py-2 d-none d-lg-block">
+            <div class="container d-flex justify-content-end">
+                <span class="text-light small me-3">
+                    <i class="fas fa-phone me-1"></i> Hotline: 1800 1234
+                </span>
+                <span class="text-light small">
+                    <i class="fas fa-envelope me-1"></i> Email: info@musicshop.com
+                </span>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-warning shadow-sm sticky-top">
+            <div class="container">
+
+                <a class="navbar-brand fw-bold text-danger" href="@Url.Action("Index", "Home")">
+                    MusicShop
+                </a>
+                <div class="collapse navbar-collapse" id="mainNavbarCollapse">
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        @Html.Action("_HeaderMenu", "Home")
+  
+                    </ul>
+
+                    <form class="d-flex mx-lg-auto" style="width: 300px;">
+                        <input class="form-control me-2" type="search" placeholder="Bạn tìm gì...">
+                        <button class="btn btn-outline-danger" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-user me-1"></i> Tài khoản</a>
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Giỏ hàng (0)", "Index", "Cart", null, new { @class = "nav-link" })
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4 class="text-uppercase mb-3">Về MusicShop</h4>
+                    <p class="text-white-50">Cửa hàng nhạc cụ chính hãng. Sứ mệnh của chúng tôi là mang âm nhạc đến mọi nhà.</p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4 class="text-uppercase mb-3">Hỗ trợ khách hàng</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white-50 text-decoration-none">Hướng dẫn mua hàng</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Chính sách bảo hành</a></li>
+                        <li><a href="#" class="text-white-50 text-decoration-none">Tra cứu đơn hàng</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4 class="text-uppercase mb-3">Liên hệ</h4>
+                    <p class="text-white-50"><i class="fas fa-map-marker-alt me-2"></i> 123 Đường ABC, Q.1, TPHCM</p>
+                    <p class="text-white-50"><i class="fas fa-phone me-2"></i> 1800 1234</p>
+                    <p class="text-white-50"><i class="fas fa-envelope me-2"></i> info@musicshop.com</p>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h4 class="text-uppercase mb-3">Theo dõi chúng tôi</h4>
+                    <a href="#" class="text-white fs-4 me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white fs-4 me-2"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="text-white fs-4 me-2"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 text-center border-top border-secondary pt-3 mt-3">
+                    <p class="text-white-50">&copy; @DateTime.Now.Year MusicShop. Đồ án môn Lập trình Web.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

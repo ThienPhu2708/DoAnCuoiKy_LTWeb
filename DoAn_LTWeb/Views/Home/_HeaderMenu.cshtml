@@ -1,0 +1,59 @@
+﻿
+@model DoAn_LTWeb.ViewModels.HeaderViewModel
+
+<li class="nav-item dropdown dropdown-megamenu">
+    <a class="nav-link dropdown-toggle fw-bold" href="#" data-bs-toggle="dropdown">
+        SẢN PHẨM
+    </a>
+    <div class="dropdown-menu">
+        <div class="container">
+            <div class="row">
+
+                @* Lặp qua danh sách Categories (từ Model tổng) *@
+                @foreach (var category in Model.Categories)
+                {
+                    <div class="col-md-3">
+                        <h4 class="megamenu-title">@category.Parent.TENLOAI</h4>
+                        <ul class="megamenu-list">
+                            @foreach (var child in category.Children)
+                            {
+                                <li>
+                                    <a class="dropdown-item" href="#">@child.TENLOAI</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                @* [MỚI] Cột THƯƠNG HIỆU (Lấy động từ CSDL) *@
+                <div class="col-md-3">
+                    <h4 class="megamenu-title">THƯƠNG HIỆU</h4>
+                    <ul class="megamenu-list">
+                        @* Lặp qua danh sách Brands (từ Model tổng) *@
+                        @foreach (var brand in Model.Brands)
+                        {
+                            <li>
+                                <a class="dropdown-item" href="#">@brand.TENTHUONGHIEU</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</li>
+
+@* --- 2. PHẦN MENU TĨNH (Giữ nguyên) --- *@
+<li class="nav-item fw-bold">
+    @Html.ActionLink("Giới thiệu", "About", "Home", null, new { @class = "nav-link" })
+</li>
+<li class="nav-item fw-bold">
+    @Html.ActionLink("Khuyến mãi", "Promotion", "Home", null, new { @class = "nav-link" })
+</li>
+<li class="nav-item fw-bold">
+    @Html.ActionLink("Tin tức", "Index", "News", null, new { @class = "nav-link" })
+</li>
+<li class="nav-item fw-bold">
+    @Html.ActionLink("Liên hệ", "Contact", "Home", null, new { @class = "nav-link" })
+</li>

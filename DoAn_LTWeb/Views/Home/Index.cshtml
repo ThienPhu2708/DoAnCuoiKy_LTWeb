@@ -1,0 +1,223 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model DoAn_LTWeb.ViewModels.HomeViewModel
+<main>
+    @*Banner ảnh*@
+    <div class="container-fluid p-0">
+        <img src="~/Content/Assets/Images/banner_header.jpg" alt="Banner" class="img-fluid w-100" />
+    </div>
+
+    @*Promotion*@
+    <section class="mt-4 py-4 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card h-100 border-0 shadow-sm bg-warning">
+                        <div class="card-body text-center">
+                            <i class="fas fa-truck fa-2x text-danger mb-2"></i>
+                            <h6 class="fw-bold">
+                                @Html.ActionLink("Trả góp", "", "Home", null, new { @class = "text-dark text-decoration-none" })
+                            </h6>
+                            <p class="text-dark opacity-75 small">Mua hàng mới lãi suất 0%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card h-100 border-0 shadow-sm bg-warning">
+                        <div class="card-body text-center">
+                            <i class="fas fa-shield-alt fa-2x text-danger mb-2"></i>
+                            <h6 class="fw-bold">
+                                @Html.ActionLink("Vận chuyển", "", "Home", null, new { @class = "text-dark text-decoration-none" })
+                            </h6>
+                            <p class="text-dark opacity-75 small">Chuyên nghiệp - Tốc độ</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card h-100 border-0 shadow-sm bg-warning">
+                        <div class="card-body text-center">
+                            <i class="fas fa-money-bill-wave fa-2x text-danger mb-2"></i>
+                            <h6 class="fw-bold">
+                                @Html.ActionLink("Bảo hành", "", "Home", null, new { @class = "text-dark text-decoration-none" })
+                            </h6>
+                            <p class="text-dark opacity-75 small">Hiệu quả - Chất lượng</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-6 mb-3">
+                    <div class="card h-100 border-0 shadow-sm bg-warning">
+                        <div class="card-body text-center">
+                            <i class="fas fa-headset fa-2x text-danger mb-2"></i>
+                            <h6 class="fw-bold">
+                                @Html.ActionLink("Đại lý", "DaiLy", "Home", null, new { @class = "text-dark text-decoration-none" })
+                            </h6>
+                            <p class="text-dark opacity-75 small">Trải rộng khắp Việt Nam</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    @*Danh mục nhạc cụ*@
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <h2 class="fw-bold">NHẠC CỤ</h2>
+                    <div class="title-divider"></div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var category in Model.ParentCategories)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <div class="card text-white border-0 shadow-sm category-card">
+
+                            <img src="@Url.Content("~/Content/Assets/Images/" + @category.ANHDAIDIEN)" class="card-img" alt="@category.TENLOAI">
+
+                            <div class="card-img-overlay d-flex flex-column justify-content-end p-4">
+                                <h4 class="card-title fw-bold">
+                                    <i class="fas fa-chevron-right me-2 small"></i> @category.TENLOAI
+                                </h4>
+                                <a href="@Url.Action("Index", "Product", new { categoryId = category.MALOAI })" class="stretched-link"></a>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+
+            @*Danh mục sản phẩm nổi bật*@
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <h2 class="fw-bold">SẢN PHẨM KHUYẾN MÃI</h2>
+                    <div class="title-divider"></div>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var product in Model.BestSeller)
+                {
+                    <div class="col-lg-4 col-md-6 mb-4">
+
+                        <div class="card text-white border-0 shadow-sm category-card">
+
+                            <img src="@Url.Content("~/Content/Assets/Images/" + @product.SANPHAM.ANHBIA)" class="card-img" alt="@product.SANPHAM.TENSP">
+
+                            <div class="card-img-overlay d-flex flex-column justify-content-end p-4">
+                                <h4 class="card-title fw-bold">
+                                    <i class="fas fa-chevron-right me-2 small"></i> @product.SANPHAM.TENSP
+                                </h4>
+                                <a href="@Url.Action("Index", "Product", new { categoryId = product.SANPHAM.MASP })" class="stretched-link"></a>
+                            </div>
+                        </div>
+
+                    </div>
+                }
+            </div>
+
+        </div>
+    </section>
+
+
+
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <div class="card text-white border-0">
+                        <img src="" class="card-img" alt="Lớp học">
+                        <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.4)">
+                            <h3 class="card-title fw-bold">TRƯỜNG NHẠC</h3>
+                            <a href="#" class="btn btn-sm btn-light">Xem khóa học</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <div class="card text-white border-0">
+                        <img src="" class="card-img" alt="Cho thuê">
+                        <div class="card-img-overlay d-flex flex-column justify-content-center align-items-center" style="background-color: rgba(0,0,0,0.4)">
+                            <h3 class="card-title fw-bold">CHO THUÊ ÂM THANH</h3>
+                            <a href="#" class="btn btn-sm btn-light">Xem dịch vụ</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="fw-bold">TIN TỨC & SỰ KIỆN</h2>
+                    <div class="title-divider"></div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                @* (Dùng vòng lặp @foreach cho Model.News) *@
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-0 shadow-sm product-card">
+                        <a href="#">
+                            <img src="" class="card-img-top" alt="Tin tức 1">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text text-muted small">18/10/2025</p>
+                            <h5 class="card-title">
+                                <a href="#" class="text-dark text-decoration-none">Tiêu đề bài viết tin tức hoặc sự kiện</a>
+                            </h5>
+                        </div>
+                        <div class="card-footer bg-white border-0 mb-3">
+                            <a href="#" class="btn btn-sm btn-outline-danger">Đọc thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-0 shadow-sm product-card">
+                        <a href="#">
+                            <img src="" class="card-img-top" alt="Tin tức 2">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text text-muted small">17/10/2025</p>
+                            <h5 class="card-title">
+                                <a href="#" class="text-dark text-decoration-none">Hướng dẫn chọn đàn guitar cho người mới</a>
+                            </h5>
+                        </div>
+                        <div class="card-footer bg-white border-0 mb-3">
+                            <a href="#" class="btn btn-sm btn-outline-danger">Đọc thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="card h-100 border-0 shadow-sm product-card">
+                        <a href="#">
+                            <img src="" class="card-img-top" alt="Tin tức 3">
+                        </a>
+                        <div class="card-body">
+                            <p class="card-text text-muted small">16/10/2025</p>
+                            <h5 class="card-title">
+                                <a href="#" class="text-dark text-decoration-none">Sự kiện ra mắt sản phẩm mới của Roland</a>
+                            </h5>
+                        </div>
+                        <div class="card-footer bg-white border-0 mb-3">
+                            <a href="#" class="btn btn-sm btn-outline-danger">Đọc thêm</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+</main>

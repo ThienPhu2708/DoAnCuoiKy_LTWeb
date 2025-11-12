@@ -1,0 +1,59 @@
+﻿/*
+=====================================================
+ NỘI DUNG SẠCH CHO FILE /Content/Site.css
+ (Đã xóa code Bootstrap 3 cũ gây lỗi)
+=====================================================
+*/
+
+/* --- 1. CSS cho Mega Menu (Bootstrap 5) --- */
+
+/* Làm cho menu dropdown tĩnh và rộng 100% */
+.dropdown-megamenu {
+    position: static;
+}
+
+    .dropdown-megamenu .dropdown-menu {
+        width: 100%;
+        left: 0;
+        right: 0;
+        top: auto; /* Để nó hiện ngay dưới navbar */
+        padding: 1.5rem 1rem; /* Tăng padding cho đẹp */
+        margin-top: 0; /* Bỏ margin mặc định */
+        border-radius: 0;
+        border-top: 1px solid #dee2e6;
+    }
+
+/* --- 2. CSS Bổ sung cho Tiêu đề cột (Cha/Con) --- */
+
+/* Tiêu đề cột (Vd: "ĐÀN GUITAR") */
+.megamenu-title {
+    font-size: 1rem; /* 16px */
+    font-weight: 700; /* Bôi đậm */
+    color: var(--bs-danger); /* Màu đỏ (hoặc màu chính của bạn) */
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee; /* Gạch chân mờ */
+    text-transform: uppercase; /* Viết hoa */
+}
+
+/* Danh sách link con (Vd: "Acoustic") */
+.megamenu-list {
+    list-style: none; /* Bỏ dấu chấm đầu dòng */
+    padding-left: 0;
+}
+
+    .megamenu-list .dropdown-item {
+        padding: 0.25rem 0; /* Giảm padding cho các link con */
+        font-weight: 400; /* Mảnh hơn tiêu đề */
+        color: #495057;
+    }
+
+        .megamenu-list .dropdown-item:hover {
+            color: var(--bs-danger);
+            background-color: transparent; /* Không đổi nền khi hover */
+        }
+
+/* --- 3. CSS Tùy chọn (Mở menu khi HOVER) --- */
+.dropdown-megamenu:hover > .dropdown-menu {
+    display: block; /* Tự động hiện menu con khi hover vào mục cha */
+}
