@@ -22,14 +22,22 @@ namespace DoAn_LTWeb.Controllers
             //sản phẩm bán chạy
             viewModel.BestSeller = data.SANPHAM_BIENTHE.Include("SANPHAM")
                                                         .OrderBy(b => b.GIABAN) 
-                                                        .Take(9) 
+                                                        .Take(8) 
                                                         .ToList();
             //tin tức
             viewModel.News = data.TINTUCs.OrderByDescending(n => n.NGAYDANG).Take(6).ToList();
 
-            return View(viewModel);
 
+
+            viewModel.Brands = data.THUONGHIEUs.OrderBy(b => b.TENTHUONGHIEU).ToList();
+
+            return View(viewModel);
         }
+
+
+
+
+
 
         [ChildActionOnly]
         public ActionResult _HeaderMenu()
@@ -59,6 +67,13 @@ namespace DoAn_LTWeb.Controllers
             };
             return PartialView("_HeaderMenu",headerViewModel);
         }
+
+
+
+
+
+
+
 
 
 

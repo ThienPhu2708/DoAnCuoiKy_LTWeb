@@ -42,5 +42,6 @@ namespace DoAn_LTWeb.Models
         public virtual ICollection<DONDATHANG> DONDATHANGs { get; set; }
 
         public virtual VAITRO VAITRO { get; set; }
+        public virtual string MATKHAU { get; set; }
     }
 }

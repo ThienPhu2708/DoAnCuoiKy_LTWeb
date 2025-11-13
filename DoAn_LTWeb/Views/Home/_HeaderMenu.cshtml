@@ -3,7 +3,7 @@
 
 <li class="nav-item dropdown dropdown-megamenu">
     <a class="nav-link dropdown-toggle fw-bold" href="#" data-bs-toggle="dropdown">
-        SẢN PHẨM
+        Sản phẩm
     </a>
     <div class="dropdown-menu">
         <div class="container">
@@ -13,32 +13,25 @@
                 @foreach (var category in Model.Categories)
                 {
                     <div class="col-md-3">
-                        <h4 class="megamenu-title">@category.Parent.TENLOAI</h4>
+                        @* Link cho Danh mục Cha (Cấp 1) - Ví dụ: Đàn Piano *@
+                        <h4 class="megamenu-title">
+                            <a href="@Url.Action("Index", "Store", new { id = category.Parent.MALOAI })" class="text-decoration-none text-dark">
+                                @category.Parent.TENLOAI
+                            </a>
+                        </h4>
                         <ul class="megamenu-list">
                             @foreach (var child in category.Children)
                             {
                                 <li>
-                                    <a class="dropdown-item" href="#">@child.TENLOAI</a>
+                                    @* Link cho Danh mục Con (Cấp 2) - Ví dụ: Grand Piano *@
+                                    <a class="dropdown-item" href="@Url.Action("Index", "Store", new { id = child.MALOAI })">
+                                        @child.TENLOAI
+                                    </a>
                                 </li>
                             }
                         </ul>
                     </div>
                 }
-
-                @* [MỚI] Cột THƯƠNG HIỆU (Lấy động từ CSDL) *@
-                <div class="col-md-3">
-                    <h4 class="megamenu-title">THƯƠNG HIỆU</h4>
-                    <ul class="megamenu-list">
-                        @* Lặp qua danh sách Brands (từ Model tổng) *@
-                        @foreach (var brand in Model.Brands)
-                        {
-                            <li>
-                                <a class="dropdown-item" href="#">@brand.TENTHUONGHIEU</a>
-                            </li>
-                        }
-                    </ul>
-                </div>
-
             </div>
         </div>
     </div>

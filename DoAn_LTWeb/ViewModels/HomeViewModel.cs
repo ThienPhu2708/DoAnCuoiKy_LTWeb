@@ -13,5 +13,7 @@ namespace DoAn_LTWeb.ViewModels
 		public List<SANPHAM_BIENTHE> BestSeller { get; set; }
 		public List<TINTUC> News { get; set; }
 
+		public List<THUONGHIEU> Brands { get; set; }
+
     }
 }
