@@ -1,0 +1,128 @@
+﻿@model DoAn_LTWeb.ViewModels.StoreViewModel
+@{
+    ViewBag.Title = Model.CurrentCategory.TENLOAI;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")" class="text-decoration-none">Trang chủ</a></li>
+
+                @if (Model.CurrentCategory.LOAISANPHAM2 != null)
+                {
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Store", new { id = Model.CurrentCategory.LOAISANPHAM2.MALOAI })" class="text-decoration-none">
+                            @Model.CurrentCategory.LOAISANPHAM2.TENLOAI
+                        </a>
+                    </li>
+                }
+
+                <li class="breadcrumb-item active" aria-current="page">@Model.CurrentCategory.TENLOAI</li>
+            </ol>
+        </nav>
+
+        <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-left me-1"></i> Quay lại trang chủ
+        </a>
+    </div>
+    <div class="row mb-4">
+        <div class="col-12">
+            <h2 class="text-uppercase border-bottom pb-2">@Model.CurrentCategory.TENLOAI</h2>
+        </div>
+    </div>
+
+    @if (Model.SubCategories != null && Model.SubCategories.Count > 0)
+    {
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="d-flex flex-wrap gap-2">
+                    @foreach (var sub in Model.SubCategories)
+                    {
+                        <a href="@Url.Action("Index", "Store", new { id = sub.MALOAI })" class="btn btn-outline-secondary rounded-pill">
+                            @sub.TENLOAI
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card p-3 mb-4">
+                <h5 class="card-title">Bộ lọc tìm kiếm</h5>
+
+                <form action="@Url.Action("Index", "Store")" method="get">
+                    <input type="hidden" name="id" value="@Model.CurrentCategory.MALOAI" />
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Từ khóa</label>
+                        <input type="text" name="search" class="form-control" value="@Model.SearchKeyword" placeholder="Tên sản phẩm...">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Khoảng giá</label>
+                        <div class="input-group mb-2">
+                            <span class="input-group-text">Từ </span>
+                            <input type="number" name="minPrice" class="form-control" value="@Model.MinPrice">
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-text">Đến</span>
+                            <input type="number" name="maxPrice" class="form-control" value="@Model.MaxPrice">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Thương hiệu</label>
+                        <select class="form-select" name="brandId">
+                            <option value="">Tất cả thương hiệu</option>
+                            @foreach (var brand in Model.Brands)
+                            {
+                                <option value="@brand.MATHUONGHIEU" @(Model.BrandId == brand.MATHUONGHIEU ? "selected" : "")>
+                                    @brand.TENTHUONGHIEU
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Áp dụng lọc</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                @if (Model.Products.Count == 0)
+                {
+                    <div class="alert alert-warning w-100">Không tìm thấy sản phẩm nào phù hợp.</div>
+                }
+                else
+                {
+                    foreach (var item in Model.Products)
+                    {
+                        var minPriceVar = item.SANPHAM_BIENTHE.OrderBy(b => b.GIABAN).FirstOrDefault();
+                        decimal price = minPriceVar != null ? (decimal)minPriceVar.GIABAN : 0;
+
+                        <div class="col">
+                            <div class="card h-100 shadow-sm product-card">
+                                <img src="~/Content/Assets/Images/@item.ANHBIA" class="card-img-top" alt="@item.TENSP" style="height: 200px; object-fit: contain;">
+
+                                <div class="card-body d-flex flex-column">
+                                    <h6 class="card-title text-truncate">@item.TENSP</h6>
+                                    <p class="text-muted small mb-1">@item.THUONGHIEU.TENTHUONGHIEU</p>
+
+                                    <div class="mt-auto">
+                                        <span class="text-danger fw-bold fs-5">@price.ToString("#,##0") đ</span>
+                                        <a href="@Url.Action("Details", "Store", new { masp = item.MASP })" class="btn btn-outline-primary w-100 mt-2">Xem chi tiết</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>

@@ -86,7 +86,9 @@
                                 <h4 class="card-title fw-bold">
                                     <i class="fas fa-chevron-right me-2 small"></i> @category.TENLOAI
                                 </h4>
-                                <a href="@Url.Action("Index", "Product", new { categoryId = category.MALOAI })" class="stretched-link"></a>
+                                <a href="@Url.Action("Index", "Store", new { id = category.MALOAI })" class="stretched-link text-white text-decoration-none small">
+                                    Xem ngay <i class="fas fa-arrow-right ms-1"></i>
+                                </a>
                             </div>
                         </div>
 
@@ -114,7 +116,9 @@
                                 <h4 class="card-title fw-bold">
                                     <i class="fas fa-chevron-right me-2 small"></i> @product.SANPHAM.TENSP
                                 </h4>
-                                <a href="@Url.Action("Index", "Product", new { categoryId = product.SANPHAM.MASP })" class="stretched-link"></a>
+                                <a href="@Url.Action("Details", "Store", new { masp = product.SANPHAM.MASP })" class="btn btn-outline-danger mt-auto btn-sm">
+                                    Xem chi tiết
+                                </a>
                             </div>
                         </div>
 
@@ -124,9 +128,6 @@
 
         </div>
     </section>
-
-
-
     <section class="py-5 bg-light">
         <div class="container">
             <div class="row">
@@ -152,72 +153,5 @@
         </div>
     </section>
 
-
-    <section class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center mb-4">
-                    <h2 class="fw-bold">TIN TỨC & SỰ KIỆN</h2>
-                    <div class="title-divider"></div>
-                </div>
-            </div>
-
-            <div class="row">
-
-                @* (Dùng vòng lặp @foreach cho Model.News) *@
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100 border-0 shadow-sm product-card">
-                        <a href="#">
-                            <img src="" class="card-img-top" alt="Tin tức 1">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text text-muted small">18/10/2025</p>
-                            <h5 class="card-title">
-                                <a href="#" class="text-dark text-decoration-none">Tiêu đề bài viết tin tức hoặc sự kiện</a>
-                            </h5>
-                        </div>
-                        <div class="card-footer bg-white border-0 mb-3">
-                            <a href="#" class="btn btn-sm btn-outline-danger">Đọc thêm</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100 border-0 shadow-sm product-card">
-                        <a href="#">
-                            <img src="" class="card-img-top" alt="Tin tức 2">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text text-muted small">17/10/2025</p>
-                            <h5 class="card-title">
-                                <a href="#" class="text-dark text-decoration-none">Hướng dẫn chọn đàn guitar cho người mới</a>
-                            </h5>
-                        </div>
-                        <div class="card-footer bg-white border-0 mb-3">
-                            <a href="#" class="btn btn-sm btn-outline-danger">Đọc thêm</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-3">
-                    <div class="card h-100 border-0 shadow-sm product-card">
-                        <a href="#">
-                            <img src="" class="card-img-top" alt="Tin tức 3">
-                        </a>
-                        <div class="card-body">
-                            <p class="card-text text-muted small">16/10/2025</p>
-                            <h5 class="card-title">
-                                <a href="#" class="text-dark text-decoration-none">Sự kiện ra mắt sản phẩm mới của Roland</a>
-                            </h5>
-                        </div>
-                        <div class="card-footer bg-white border-0 mb-3">
-                            <a href="#" class="btn btn-sm btn-outline-danger">Đọc thêm</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
 </main>

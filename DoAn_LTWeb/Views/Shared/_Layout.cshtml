@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - MusicShop</title>
-    <link href="~Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -34,11 +34,10 @@
 
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         @Html.Action("_HeaderMenu", "Home")
-  
                     </ul>
 
-                    <form class="d-flex mx-lg-auto" style="width: 300px;">
-                        <input class="form-control me-2" type="search" placeholder="Bạn tìm gì...">
+                    <form class="d-flex mx-lg-auto" style="width: 300px;" action="@Url.Action("Index", "Store")" method="get">
+                        <input class="form-control me-2" type="search" name="search" placeholder="Bạn tìm gì..." value="@Request.QueryString["search"]">
                         <button class="btn btn-outline-danger" type="submit"><i class="fas fa-search"></i></button>
                     </form>
 

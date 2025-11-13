@@ -1,0 +1,182 @@
+﻿@model DoAn_LTWeb.Models.SANPHAM
+@{
+    ViewBag.Title = Model.TENSP;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var firstVariant = Model.SANPHAM_BIENTHE.OrderBy(b => b.GIABAN).FirstOrDefault();
+    decimal defaultPrice = firstVariant != null ? (decimal)firstVariant.GIABAN : 0;
+    decimal defaultOldPrice = defaultPrice * 1.1m;
+}
+
+<div class="container py-5">
+
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")" class="text-decoration-none">Trang chủ</a></li>
+
+            @if (Model.LOAISANPHAM.LOAISANPHAM2 != null)
+            {
+                <li class="breadcrumb-item">
+                    <a href="@Url.Action("Index", "Store", new { id = Model.LOAISANPHAM.LOAISANPHAM2.MALOAI })" class="text-decoration-none">
+                        @Model.LOAISANPHAM.LOAISANPHAM2.TENLOAI
+                    </a>
+                </li>
+            }
+
+            <li class="breadcrumb-item">
+                <a href="@Url.Action("Index", "Store", new { id = Model.LOAISANPHAM.MALOAI })" class="text-decoration-none">
+                    @Model.LOAISANPHAM.TENLOAI
+                </a>
+            </li>
+
+            <li class="breadcrumb-item active" aria-current="page">@Model.TENSP</li>
+        </ol>
+        <a href="@Url.Action("Index", "Home")" class="btn btn-outline-secondary btn-sm">
+            <i class="fas fa-arrow-left me-1"></i> Quay lại trang chủ
+        </a>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card border-0 shadow-sm mb-3">
+                <img id="mainImage" src="~/Content/Assets/Images/@Model.ANHBIA" class="card-img-top p-3" alt="@Model.TENSP" style="height: 400px; object-fit: contain;">
+            </div>
+
+            @if (Model.LIST_ANHSP.Count > 0)
+            {
+                <div class="d-flex gap-2 overflow-auto pb-2">
+                    <img src="~/Content/Assets/Images/@Model.ANHBIA" class="img-thumbnail cursor-pointer thumb-img border-danger"
+                         onclick="changeImage(this, '@Url.Content("~/Content/Assets/Images/" + Model.ANHBIA)')"
+                         style="width: 80px; height: 80px; object-fit: cover;">
+
+                    @foreach (var img in Model.LIST_ANHSP)
+                    {
+                        <img src="~/Content/Assets/Images/@img.URL_ANH" class="img-thumbnail cursor-pointer thumb-img"
+                             onclick="changeImage(this, '@Url.Content("~/Content/Assets/Images/" + img.URL_ANH)')"
+                             style="width: 80px; height: 80px; object-fit: cover;">
+                    }
+                </div>
+            }
+        </div>
+
+        <div class="col-md-6">
+            <h2 class="fw-bold mb-2">@Model.TENSP</h2>
+
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <span class="badge bg-primary">@Model.THUONGHIEU.TENTHUONGHIEU</span>
+                <span class="text-warning">
+                    @for (int i = 0; i < 5; i++)
+                    {
+                        if (i < Math.Floor(Model.DANHGIA ?? 5))
+                        {<i class="fas fa-star"></i> }
+                        else
+                        { <i class="far fa-star"></i>}
+                    }
+                </span>
+            </div>
+
+            <div class="mb-4">
+                <h1 class="text-danger fw-bold d-inline me-2" id="displayPrice">@defaultPrice.ToString("#,##0") đ</h1>
+                <span class="text-muted text-decoration-line-through fs-5" id="displayOldPrice">@defaultOldPrice.ToString("#,##0") đ</span>
+            </div>
+
+            <div class="mb-4 text-secondary">
+                @Html.Raw(Model.MOTA.Replace("\n", "<br>"))
+            </div>
+
+            <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                <input type="hidden" name="productId" value="@Model.MASP" />
+
+                @if (Model.SANPHAM_BIENTHE.Count > 0)
+                {
+                    <div class="mb-4">
+                        <label class="fw-bold mb-2">Tùy chọn:</label>
+                        <select class="form-select w-75 border-danger" id="variantSelect" name="variantId">
+                            @foreach (var variant in Model.SANPHAM_BIENTHE)
+                            {
+                                // Lưu giá vào data-attribute để JS đọc
+                                <option value="@variant.MABIENTHE" data-price="@variant.GIABAN">
+                                    @variant.TENBIENTHE
+                                </option>
+                            }
+                        </select>
+                    </div>
+                }
+
+                <div class="d-flex gap-3 mt-4">
+                    <div class="input-group" style="width: 120px;">
+                        <button class="btn btn-outline-secondary" type="button" onclick="if(qty.value>1) qty.value--">-</button>
+                        <input type="text" id="qty" name="quantity" class="form-control text-center" value="1">
+                        <button class="btn btn-outline-secondary" type="button" onclick="qty.value++">+</button>
+                    </div>
+
+                    <button type="submit" class="btn btn-danger btn-lg shadow-sm px-4">
+                        <i class="fas fa-shopping-cart me-2"></i> THÊM VÀO GIỎ
+                    </button>
+                </div>
+            </form>
+
+            <div class="row mt-5 g-2 small">
+                <div class="col-6"><i class="fas fa-check-circle text-success me-1"></i> Bảo hành chính hãng 12 tháng</div>
+                <div class="col-6"><i class="fas fa-check-circle text-success me-1"></i> Đổi trả trong 7 ngày</div>
+                <div class="col-6"><i class="fas fa-check-circle text-success me-1"></i> Miễn phí vận chuyển toàn quốc</div>
+                <div class="col-6"><i class="fas fa-check-circle text-success me-1"></i> Hỗ trợ trả góp 0%</div>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.RelatedProducts != null)
+    {
+        <div class="mt-5">
+            <h3 class="fw-bold text-uppercase border-bottom pb-2 border-danger mb-4">Sản phẩm liên quan</h3>
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                @foreach (var item in ViewBag.RelatedProducts as List<DoAn_LTWeb.Models.SANPHAM>)
+                {
+                    var rPrice = item.SANPHAM_BIENTHE.FirstOrDefault()?.GIABAN ?? 0;
+                    <div class="col">
+                        <div class="card h-100 shadow-sm border-0 product-card">
+                            <img src="~/Content/Assets/Images/@item.ANHBIA" class="card-img-top p-3" style="height: 180px; object-fit: contain;">
+                            <div class="card-body text-center">
+                                <h6 class="card-title text-truncate">
+                                    <a href="@Url.Action("Details", "Store", new { masp = item.MASP })" class="text-decoration-none text-dark">@item.TENSP</a>
+                                </h6>
+                                <p class="text-danger fw-bold">@(rPrice > 0 ? ((decimal)rPrice).ToString("#,##0") + " đ" : "Liên hệ")</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section scripts {
+    <script>// 1. Hàm đổi ảnh lớn khi click ảnh nhỏ
+        function changeImage(element, src) {
+            // Đổi ảnh chính
+            document.getElementById('mainImage').src = src;
+
+            // Xóa viền đỏ ở các ảnh khác
+            document.querySelectorAll('.thumb-img').forEach(img => img.classList.remove('border-danger'));
+
+            // Thêm viền đỏ vào ảnh được chọn
+            element.classList.add('border-danger');
+        }
+
+        // 2. Hàm cập nhật giá khi chọn Dropdown
+        $(document).ready(function () {
+            $('#variantSelect').change(function () {
+                // Lấy giá từ data-price của option đang chọn
+                var price = $(this).find(':selected').data('price');
+
+                // Format tiền tệ (Ví dụ: 2000000 -> 2,000,000 đ)
+                if(price) {
+                    var formattedPrice = new Intl.NumberFormat('vi-VN').format(price) + ' đ';
+                    var oldPrice = new Intl.NumberFormat('vi-VN').format(price * 1.1) + ' đ'; // Giá ảo cao hơn 10%
+
+                    $('#displayPrice').text(formattedPrice);
+                    $('#displayOldPrice').text(oldPrice);
+                }
+            });
+        });</script>
+}

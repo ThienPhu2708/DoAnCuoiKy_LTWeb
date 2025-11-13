@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DoAn_LTWeb.Models;
 using DoAn_LTWeb.ViewModels;
-
+ 
 namespace DoAn_LTWeb.Controllers
 {
     public class HomeController : Controller
@@ -55,7 +55,7 @@ namespace DoAn_LTWeb.Controllers
             var headerViewModel = new HeaderViewModel
             {
                 Categories = viewModel, // Gán list 1
-                Brands = allBrands              // Gán list 2
+                Brands = allBrands     // Gán list 2
             };
             return PartialView("_HeaderMenu",headerViewModel);
         }
