@@ -1,11 +1,17 @@
 ﻿@model DoAn_LTWeb.Models.SANPHAM
+@using System.Globalization;
 @{
     ViewBag.Title = Model.TENSP;
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var firstVariant = Model.SANPHAM_BIENTHE.OrderBy(b => b.GIABAN).FirstOrDefault();
-    decimal defaultPrice = firstVariant != null ? (decimal)firstVariant.GIABAN : 0;
-    decimal defaultOldPrice = defaultPrice * 1.1m;
+    decimal defaultPrice = 0;
+    decimal defaultOldPrice = 0;
+    if (firstVariant != null)
+    {
+        defaultPrice = firstVariant.GIABAN ?? 0; // Lấy giá bán
+        defaultOldPrice = firstVariant.GIAGOC ?? 0; // [SỬA LẠI] Lấy giá gốc
+    }
 }
 
 <div class="container py-5">
@@ -88,11 +94,22 @@
                 {
                     <div class="mb-4">
                         <label class="fw-bold mb-2">Tùy chọn:</label>
-                        <select class="form-select w-75 border-danger" id="variantSelect" name="variantId">
+                        @using System.Globalization <select class="form-select w-75 border-danger" id="variantSelect" name="variantId">
                             @foreach (var variant in Model.SANPHAM_BIENTHE)
                             {
-                                // Lưu giá vào data-attribute để JS đọc
-                                <option value="@variant.MABIENTHE" data-price="@variant.GIABAN">
+                                // [SỬA LẠI] Kiểm tra NULL cho an toàn
+                                var priceString = variant.GIABAN.HasValue ? variant.GIABAN.Value.ToString("F0", CultureInfo.InvariantCulture) : "0";
+                                var oldPriceString = variant.GIAGOC.HasValue ? variant.GIAGOC.Value.ToString("F0", CultureInfo.InvariantCulture) : "0";
+
+                                // [SỬA LẠI] Kiểm tra ảnh biến thể. Nếu NULL, dùng ảnh cha (ANHBIA)
+                                var variantImage = !string.IsNullOrEmpty(variant.ANH_BIENTHE)
+                                                 ? variant.ANH_BIENTHE
+                                                 : Model.ANHBIA; // Dùng ảnh cha làm ảnh dự phòng
+
+                                <option value="@variant.MABIENTHE"
+                                        data-price="@priceString"
+                                        data-oldprice="@oldPriceString"
+                                        data-image="@Url.Content("~/Content/Assets/Product_Images/" + variantImage)">
                                     @variant.TENBIENTHE
                                 </option>
                             }
@@ -100,17 +117,36 @@
                     </div>
                 }
 
+                @*Hiển thị thông báo thêm vào giỏ hàng thành công*@
+                @if (TempData["SuccessMessage"] != null)
+                {
+                    <div id="success-alert" class="alert alert-success alert-dismissible fade show shadow-sm mt-3" role="alert">
+                        <i class="fas fa-check-circle me-2"></i>
+                        <strong>@TempData["SuccessMessage"]</strong>
+                    </div>
+                }
+
+
+                @*Thêm vào giỏ và mua ngay*@
                 <div class="d-flex gap-3 mt-4">
+
                     <div class="input-group" style="width: 120px;">
                         <button class="btn btn-outline-secondary" type="button" onclick="if(qty.value>1) qty.value--">-</button>
                         <input type="text" id="qty" name="quantity" class="form-control text-center" value="1">
                         <button class="btn btn-outline-secondary" type="button" onclick="qty.value++">+</button>
                     </div>
 
-                    <button type="submit" class="btn btn-danger btn-lg shadow-sm px-4">
-                        <i class="fas fa-shopping-cart me-2"></i> THÊM VÀO GIỎ
+                    <button type="submit" name="type" value="add" class="btn btn-info btn-lg shadow-sm px-4 text-white fw-bold" formtarget="_self">
+                        <i class="fas fa-cart-plus me-2"></i> THÊM VÀO GIỎ
+                    </button>
+
+                    <button type="submit" name="type" value="buynow" class="btn btn-danger btn-lg shadow-sm px-4 fw-bold" formtarget="_self">
+                        <i class="fas fa-check-circle me-2"></i> MUA NGAY
                     </button>
                 </div>
+
+
+
             </form>
 
             <div class="row mt-5 g-2 small">
@@ -124,57 +160,100 @@
 
     @if (ViewBag.RelatedProducts != null)
     {
+
         <div class="mt-5">
             <h3 class="fw-bold text-uppercase border-bottom pb-2 border-danger mb-4">Sản phẩm liên quan</h3>
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 @foreach (var item in ViewBag.RelatedProducts as List<DoAn_LTWeb.Models.SANPHAM>)
                 {
+
                     var rPrice = item.SANPHAM_BIENTHE.FirstOrDefault()?.GIABAN ?? 0;
-                    <div class="col">
-                        <div class="card h-100 shadow-sm border-0 product-card">
-                            <img src="~/Content/Assets/Product_Images/@item.ANHBIA" class="card-img-top p-3" style="height: 180px; object-fit: contain;">
-                            <div class="card-body text-center">
-                                <h6 class="card-title text-truncate">
-                                    <a href="@Url.Action("Details", "Store", new { id = item.MASP })" class="text-decoration-none text-dark">@item.TENSP</a>
-                                </h6>
-                                <p class="text-danger fw-bold">@(rPrice > 0 ? ((decimal)rPrice).ToString("#,##0") + " đ" : "Liên hệ")</p>
+                    <a href="@Url.Action("Details", "Store", new { id = item.MASP })" class=" text-decoration-none text-dark">
+                        <div class="col">
+                            <div class="card h-100 shadow-sm border-0 product-card">
+                                <img src="~/Content/Assets/Product_Images/@item.ANHBIA" class="card-img-top p-3" style="height: 180px; object-fit: contain;">
+                                <div class="card-body text-center">
+                                    <h6 class="card-title text-truncate">
+                                        @item.TENSP
+                                    </h6>
+                                    <p class="text-danger fw-bold">@(rPrice > 0 ? ((decimal)rPrice).ToString("#,##0") + " đ" : "Liên hệ")</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 }
             </div>
         </div>
     }
 </div>
 
+
+
+
+
+
 @section scripts {
     <script>
-// 1. Hàm đổi ảnh lớn khi click ảnh nhỏ
+        // 1. Hàm đổi ảnh (Giữ nguyên)
         function changeImage(element, src) {
-            // Đổi ảnh chính
             document.getElementById('mainImage').src = src;
-
-            // Xóa viền đỏ ở các ảnh khác
             document.querySelectorAll('.thumb-img').forEach(img => img.classList.remove('border-danger'));
-
-            // Thêm viền đỏ vào ảnh được chọn
             element.classList.add('border-danger');
         }
 
-        // 2. Hàm cập nhật giá khi chọn Dropdown
         $(document).ready(function () {
-            $('#variantSelect').change(function () {
-                // Lấy giá từ data-price của option đang chọn
-                var price = $(this).find(':selected').data('price');
 
-                // Format tiền tệ (Ví dụ: 2000000 -> 2,000,000 đ)
-                if(price) {
-                    var formattedPrice = new Intl.NumberFormat('vi-VN').format(price) + ' đ';
-                    var oldPrice = new Intl.NumberFormat('vi-VN').format(price * 1.1) + ' đ'; // Giá ảo cao hơn 10%
+            function updateProductDetails() {
+                var selectedOption = $('#variantSelect').find(':selected');
 
-                    $('#displayPrice').text(formattedPrice);
-                    $('#displayOldPrice').text(oldPrice);
+                // --- A. Lấy dữ liệu từ data- attributes ---
+                var priceString = selectedOption.data('price');
+                var oldPriceString = selectedOption.data('oldprice');
+                var imageSrc = selectedOption.data('image'); // [MỚI] Lấy đường dẫn ảnh
+
+                // --- B. [FIX LỖI] Cập nhật Ảnh ---
+                if (imageSrc) {
+                    $('#mainImage').attr('src', imageSrc);
                 }
-            });
-        });</script>
+
+                // --- C. Cập nhật Giá (Fix lỗi NaN) ---
+                var price = parseFloat(priceString);
+                var oldPrice = parseFloat(oldPriceString);
+
+                if (!isNaN(price)) {
+                    var formattedPrice = new Intl.NumberFormat('vi-VN').format(price) + ' đ';
+                    $('#displayPrice').text(formattedPrice);
+
+                    if (!isNaN(oldPrice) && oldPrice > price) {
+                        var formattedOldPrice = new Intl.NumberFormat('vi-VN').format(oldPrice) + ' đ';
+                        $('#displayOldPrice').text(formattedOldPrice).show();
+                    } else {
+                        $('#displayOldPrice').hide();
+                    }
+                }
+                else {
+                    $('#displayPrice').text('Liên hệ');
+                    $('#displayOldPrice').hide();
+                }
+            }
+
+            // Gán sự kiện 'change'
+            $('#variantSelect').change(updateProductDetails);
+
+            // Kích hoạt 'change' ngay khi tải trang để load giá/ảnh đầu tiên
+            updateProductDetails();
+            //tự động tắt thông báo sau hai giây
+            var alertBox = $("#success-alert");
+            if (alertBox.length > 0) {
+                setTimeout(function () {
+                    alertBox.fadeOut(500, function () {
+                        $(this).remove();
+                    });
+                }, 1000);
+            }
+
+
+
+        });
+    </script>
 }

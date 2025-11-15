@@ -7,24 +7,48 @@
       "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\views\\store\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\store\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\store\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\home\\_headermenu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\home\\_headermenu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\views\\promotion\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\promotion\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\store\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\store\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\models\\sanpham_bienthe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\models\\sanpham_bienthe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\views\\cart\\ordersuccess.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\cart\\ordersuccess.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\cart\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\views\\cart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\cart\\checkout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\viewmodels\\cartitemviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\viewmodels\\cartitemviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|e:\\nam3_dh\\l\u1EADp tr\u00ECnh web\\doancuoiki\\doancuoiki_ltweb\\instrumentshop\\doan_ltweb\\views\\home\\searchsuggestion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\home\\searchsuggestion.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -35,32 +59,52 @@
       "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\viewmodels\\homeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\home\\_headermenu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\home\\_headermenu.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\viewmodels\\productfilterviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\viewmodels\\productfilterviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\viewmodels\\headerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\viewmodels\\headerviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\viewmodels\\storeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\viewmodels\\storeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\controllers\\promotioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\controllers\\promotioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\viewmodels\\menucategoryviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\viewmodels\\menucategoryviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\models\\loaisanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\models\\loaisanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\controllers\\storecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\models\\list_anhsp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\models\\list_anhsp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\models\\sanpham_bienthe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\models\\sanpham_bienthe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\content\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\viewmodels\\storeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\viewmodels\\storeviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\views\\home\\about.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|solutionrelative:doan_ltweb\\models\\khachhang.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D265CA29-E238-473B-BF11-AAC9AEE78595}|DoAn_LTWeb\\DoAn_LTWeb.csproj|E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\doan_ltweb\\views\\shared\\error.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -78,7 +122,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 287,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -98,41 +142,29 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SANPHAM_BIENTHE.cs",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\SANPHAM_BIENTHE.cs",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\Models\\SANPHAM_BIENTHE.cs",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\SANPHAM_BIENTHE.cs",
-              "RelativeToolTip": "DoAn_LTWeb\\Models\\SANPHAM_BIENTHE.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAuwBsAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T15:07:47.503Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Details.cshtml",
               "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Store\\Details.cshtml",
               "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Store\\Details.cshtml",
               "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Store\\Details.cshtml",
               "RelativeToolTip": "DoAn_LTWeb\\Views\\Store\\Details.cshtml",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAAAJcAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAM8AAAAAAAAAAAAAAOUAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-13T07:54:16.087Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "_HeaderMenu.cshtml",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\_HeaderMenu.cshtml",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Home\\_HeaderMenu.cshtml",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\_HeaderMenu.cshtml",
-              "RelativeToolTip": "DoAn_LTWeb\\Views\\Home\\_HeaderMenu.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAFAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "SearchSuggestion.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\SearchSuggestion.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Home\\SearchSuggestion.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\SearchSuggestion.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Home\\SearchSuggestion.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-12T06:39:24.396Z"
+              "WhenOpened": "2025-11-15T06:09:46.543Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -142,26 +174,144 @@
               "RelativeDocumentMoniker": "DoAn_LTWeb\\Controllers\\HomeController.cs",
               "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\HomeController.cs",
               "RelativeToolTip": "DoAn_LTWeb\\Controllers\\HomeController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAAAFsAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-12T06:38:09.504Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "HeaderViewModel.cs",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\HeaderViewModel.cs",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\ViewModels\\HeaderViewModel.cs",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\HeaderViewModel.cs",
-              "RelativeToolTip": "DoAn_LTWeb\\ViewModels\\HeaderViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Promotion\\Index.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Promotion\\Index.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Promotion\\Index.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Promotion\\Index.cshtml",
+              "ViewState": "AgIAAKgAAAAAAAAAAAAAwLcAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-13T17:39:43.206Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACcAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-12T07:16:19.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Controllers\\CartController.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\CartController.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAEUAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T06:34:58.263Z"
+              "WhenOpened": "2025-11-15T06:46:48.976Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "_HeaderMenu.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\_HeaderMenu.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Home\\_HeaderMenu.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\_HeaderMenu.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Home\\_HeaderMenu.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-12T06:39:24.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Store\\Index.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Store\\Index.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Store\\Index.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Store\\Index.cshtml",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAABcAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-13T07:53:27.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Cart\\Index.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Cart\\Index.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Cart\\Index.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Cart\\Index.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAFsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-15T07:03:16.485Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CartItemViewModel.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\CartItemViewModel.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\ViewModels\\CartItemViewModel.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\CartItemViewModel.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\ViewModels\\CartItemViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-15T06:40:27.324Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Checkout.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Cart\\Checkout.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Cart\\Checkout.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Cart\\Checkout.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Cart\\Checkout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-15T07:11:06.406Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "OrderSuccess.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Cart\\OrderSuccess.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Cart\\OrderSuccess.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Cart\\OrderSuccess.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Cart\\OrderSuccess.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-15T07:18:26.29Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Home\\Index.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAI0AAAAAAAAAAAAAAKUAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-12T07:19:30.575Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
               "Title": "HomeViewModel.cs",
               "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\HomeViewModel.cs",
               "RelativeDocumentMoniker": "DoAn_LTWeb\\ViewModels\\HomeViewModel.cs",
@@ -169,61 +319,122 @@
               "RelativeToolTip": "DoAn_LTWeb\\ViewModels\\HomeViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T09:37:12.798Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Store\\Index.cshtml",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Store\\Index.cshtml",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Store\\Index.cshtml",
-              "RelativeToolTip": "DoAn_LTWeb\\Views\\Store\\Index.cshtml",
-              "ViewState": "AgIAAGEAAAAAAAAAAAAAAG0AAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-13T07:53:27.391Z",
+              "WhenOpened": "2025-11-12T09:37:12.798Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\Index.cshtml",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Home\\Index.cshtml",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "DoAn_LTWeb\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAAAHsAAACjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-12T07:19:30.575Z"
+              "DocumentIndex": 17,
+              "Title": "MenuCategoryViewModel.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\MenuCategoryViewModel.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\ViewModels\\MenuCategoryViewModel.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\MenuCategoryViewModel.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\ViewModels\\MenuCategoryViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T06:34:47.211Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 14,
+              "Title": "ProductFilterViewModel.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\ProductFilterViewModel.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\ViewModels\\ProductFilterViewModel.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\ProductFilterViewModel.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\ViewModels\\ProductFilterViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T17:58:37.484Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "HeaderViewModel.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\HeaderViewModel.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\ViewModels\\HeaderViewModel.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\HeaderViewModel.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\ViewModels\\HeaderViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T06:34:58.263Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PromotionController.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\PromotionController.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Controllers\\PromotionController.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\PromotionController.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\Controllers\\PromotionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T17:33:58.738Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "SANPHAM_BIENTHE.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\SANPHAM_BIENTHE.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Models\\SANPHAM_BIENTHE.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\SANPHAM_BIENTHE.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\Models\\SANPHAM_BIENTHE.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAACUAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-13T15:07:47.503Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "LOAISANPHAM.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\LOAISANPHAM.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Models\\LOAISANPHAM.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\LOAISANPHAM.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\Models\\LOAISANPHAM.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T18:30:27.522Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "StoreController.cs",
               "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\StoreController.cs",
               "RelativeDocumentMoniker": "DoAn_LTWeb\\Controllers\\StoreController.cs",
               "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\StoreController.cs",
               "RelativeToolTip": "DoAn_LTWeb\\Controllers\\StoreController.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAqwE4AAAArAAAAAAAAAA==",
+              "ViewState": "AgIAADEAAAAAAAAAAAAAwGQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T07:50:40.01Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T07:50:40.01Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "DoAn_LTWeb\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-11-12T07:16:19.721Z"
+              "DocumentIndex": 20,
+              "Title": "LIST_ANHSP.cs",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\LIST_ANHSP.cs",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Models\\LIST_ANHSP.cs",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\LIST_ANHSP.cs",
+              "RelativeToolTip": "DoAn_LTWeb\\Models\\LIST_ANHSP.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-14T09:49:23.269Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 22,
+              "Title": "Site.css",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Content\\Site.css",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Content\\Site.css",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Content\\Site.css",
+              "RelativeToolTip": "DoAn_LTWeb\\Content\\Site.css",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAAAIUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-12T09:10:22.479Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
               "Title": "StoreViewModel.cs",
               "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\StoreViewModel.cs",
               "RelativeDocumentMoniker": "DoAn_LTWeb\\ViewModels\\StoreViewModel.cs",
@@ -235,31 +446,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "AccountController.cs",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\AccountController.cs",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\Controllers\\AccountController.cs",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Controllers\\AccountController.cs",
-              "RelativeToolTip": "DoAn_LTWeb\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T07:22:59.124Z"
+              "DocumentIndex": 24,
+              "Title": "About.cshtml",
+              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\About.cshtml",
+              "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Home\\About.cshtml",
+              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Home\\About.cshtml",
+              "RelativeToolTip": "DoAn_LTWeb\\Views\\Home\\About.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAB1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-11-13T17:16:33.359Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "MenuCategoryViewModel.cs",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\MenuCategoryViewModel.cs",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\ViewModels\\MenuCategoryViewModel.cs",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\ViewModels\\MenuCategoryViewModel.cs",
-              "RelativeToolTip": "DoAn_LTWeb\\ViewModels\\MenuCategoryViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-13T06:34:47.211Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 25,
               "Title": "KHACHHANG.cs",
               "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\KHACHHANG.cs",
               "RelativeDocumentMoniker": "DoAn_LTWeb\\Models\\KHACHHANG.cs",
@@ -271,7 +470,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 27,
               "Title": "TINTUC.cs",
               "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Models\\TINTUC.cs",
               "RelativeDocumentMoniker": "DoAn_LTWeb\\Models\\TINTUC.cs",
@@ -283,7 +482,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 26,
               "Title": "Error.cshtml",
               "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Views\\Shared\\Error.cshtml",
               "RelativeDocumentMoniker": "DoAn_LTWeb\\Views\\Shared\\Error.cshtml",
@@ -292,18 +491,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-11-13T03:12:10.609Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Site.css",
-              "DocumentMoniker": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Content\\Site.css",
-              "RelativeDocumentMoniker": "DoAn_LTWeb\\Content\\Site.css",
-              "ToolTip": "E:\\Nam3_DH\\L\u1EADp Tr\u00ECnh Web\\DoAnCuoiKi\\DoAnCuoiKi_LTWeb\\InstrumentShop\\DoAn_LTWeb\\Content\\Site.css",
-              "RelativeToolTip": "DoAn_LTWeb\\Content\\Site.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAH4AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-11-12T09:10:22.479Z"
             }
           ]
         }

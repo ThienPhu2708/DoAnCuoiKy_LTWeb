@@ -1,0 +1,123 @@
+﻿
+@model List<DoAn_LTWeb.ViewModels.CartItemViewModel>
+
+@{
+    ViewBag.Title = "Thanh toán đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    decimal tongTien = ViewBag.TongTien ?? 0;
+
+}
+
+<div class="container py-5">
+    <h2 class="fw-bold mb-4 text-center">THANH TOÁN ĐƠN HÀNG</h2>
+
+    <div class="row">
+        <div class="col-lg-7 mb-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h5 class="mb-0 fw-bold text-danger"><i class="fas fa-user-edit me-2"></i>Thông tin giao hàng</h5>
+                </div>
+                <div class="card-body p-4">
+                    <form action="@Url.Action("OrderSuccess", "Cart")" method="post" id="checkoutForm">
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Họ và tên người nhận <span class="text-danger">*</span></label>
+                            <input type="text" name="shipName" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" required>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Số điện thoại <span class="text-danger">*</span></label>
+                                <input type="tel" name="mobile" class="form-control" placeholder="Ví dụ: 0901234567" required pattern="[0-9]{10}">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold">Email (để nhận thông báo)</label>
+                                <input type="email" name="email" class="form-control" placeholder="Ví dụ: email@example.com">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label fw-bold">Địa chỉ giao hàng <span class="text-danger">*</span></label>
+                            <textarea name="address" class="form-control" rows="2" placeholder="Số nhà, tên đường, phường/xã, quận/huyện..." required></textarea>
+                        </div>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-bold">Phương thức thanh toán</label>
+                            <div class="border rounded p-3">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="COD" checked>
+                                    <label class="form-check-label" for="cod">
+                                        <i class="fas fa-money-bill-alt text-success me-2"></i> Thanh toán khi nhận hàng (COD)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="bank" value="BANK">
+                                    <label class="form-check-label" for="bank">
+                                        <i class="fas fa-university text-primary me-2"></i> Chuyển khoản ngân hàng
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger btn-lg fw-bold">HOÀN TẤT ĐẶT HÀNG</button>
+                            <a href="@Url.Action("Index", "Cart")" class="text-center mt-3 text-decoration-none text-muted">
+                                <i class="fas fa-arrow-left me-1"></i> Quay lại giỏ hàng
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm bg-light">
+                <div class="card-header bg-transparent py-3 border-bottom">
+                    <h5 class="mb-0 fw-bold"><i class="fas fa-shopping-bag me-2"></i>Đơn hàng của bạn (@Model.Count sản phẩm)</h5>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive" style="max-height: 400px;">
+                        <table class="table table-borderless mb-0">
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr class="border-bottom">
+                                        <td style="width: 70px;" class="ps-3 py-3">
+                                            <img src="~/Content/Assets/Product_Images/@item.HinhAnh"
+                                                 style="width: 60px; height: 60px; object-fit: cover;" class="rounded border">
+                                        </td>
+                                        <td class="py-3">
+                                            <h6 class="mb-1 fw-bold" style="font-size: 0.95rem;">@item.TenSanPham</h6>
+                                            <small class="text-muted d-block">Phân loại: @item.TenBienThe</small>
+                                            <small class="text-danger fw-bold">@item.DonGia.ToString("#,##0") đ x @item.SoLuong</small>
+                                        </td>
+                                        <td class="text-end pe-3 py-3 fw-bold">
+                                            @item.ThanhTien.ToString("#,##0") đ
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer bg-white p-4 border-top">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Tạm tính:</span>
+                        <span class="fw-bold">@tongTien.ToString("#,##0") đ</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Phí vận chuyển:</span>
+                        <span class="text-success">Miễn phí</span>
+                    </div>
+                    <hr>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fs-5 fw-bold text-dark">Tổng cộng:</span>
+                        <span class="fs-4 fw-bold text-danger">@tongTien.ToString("#,##0") đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

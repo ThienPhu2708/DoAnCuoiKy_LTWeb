@@ -23,7 +23,7 @@ namespace DoAn_LTWeb.Models
         [StringLength(150)]
         public string TENBIENTHE { get; set; }
 
-        public decimal? GIAGOC { get; set; }
+        public decimal? GIAGOC { get; set; }    
 
         public decimal? GIABAN { get; set; }
 
@@ -33,5 +33,10 @@ namespace DoAn_LTWeb.Models
         public virtual ICollection<CHITIETDONDATHANG> CHITIETDONDATHANGs { get; set; }
 
         public virtual SANPHAM SANPHAM { get; set; }
+
+
+        public string ANH_BIENTHE { get; set; }
+
+
     }
 }

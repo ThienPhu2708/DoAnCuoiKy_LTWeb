@@ -1,9 +1,48 @@
 ﻿@{
-    ViewBag.Title = "About";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
 
-    <p>Use this area to provide additional information.</p>
-</main>
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb p-3 rounded">
+            @Html.ActionLink("Trang chủ", "Index", "Home", null, new { @class = "text-decoration-none breadcrumb-item" })
+            <li class="breadcrumb-item active" aria-current="page">Giới thiệu</li>
+        </ol>
+    </nav>
+</div>
+
+<section class="pb-5">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-7">
+                <h1 class="fw-bold mb-3">VỀ MUSICSHOP</h1>
+                <div class="title-divider" style="margin: 0 0 20px 0;"></div> <p class="lead mb-4">
+                    MusicShop được thành lập với niềm đam mê mang âm nhạc chất lượng đến
+                    với mọi người. Chúng tôi tự hào là nhà phân phối chính hãng của các
+                    thương hiệu nhạc cụ hàng đầu thế giới như Taylor, Fender, Roland, Yamaha...
+                </p>
+                <p>
+                    Với gần 30 năm kinh nghiệm (giống như khối bạn đã làm ở trang chủ),
+                    chúng tôi không chỉ cung cấp sản phẩm mà còn mang đến các giải pháp âm nhạc
+                    toàn diện, từ tư vấn, lắp đặt đến các khóa học tại Music School.
+                </p>
+
+                <ul class="list-unstyled mt-4 text-dark">
+                    <li class="mb-2">
+                        <i class="fas fa-check-circle text-danger me-2"></i>
+                        Hơn 70 đại lý lớn nhỏ tại các tỉnh thành Việt Nam.
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check-circle text-danger me-2"></i>
+                        Cam kết đem lại những lợi ích tốt nhất cho khách hàng.
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check-circle text-danger me-2"></i>
+                        MusicShop với hệ thống giáo trình chuẩn Quốc tế.
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>

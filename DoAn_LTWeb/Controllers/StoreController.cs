@@ -74,9 +74,9 @@ namespace DoAn_LTWeb.Controllers
 
             return View(viewModel);
         }
-        public ActionResult Details(string masp)
+        public ActionResult Details(string id)
         {
-            if (string.IsNullOrEmpty(masp))
+            if (string.IsNullOrEmpty(id))
             {
                 return RedirectToAction("Index", "Store");
             }
@@ -85,13 +85,13 @@ namespace DoAn_LTWeb.Controllers
                                      .Include(s => s.LIST_ANHSP)
                                      .Include(s => s.SANPHAM_BIENTHE)
                                      .Include(s => s.LOAISANPHAM.LOAISANPHAM2)
-                                     .FirstOrDefault(s => s.MASP == masp);
+                                     .FirstOrDefault(s => s.MASP == id);
 
             if (sanpham == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.RelatedProducts = db.SANPHAMs.Where(s => s.MALOAI == sanpham.MALOAI && s.MASP != masp)
+            ViewBag.RelatedProducts = db.SANPHAMs.Where(s => s.MALOAI == sanpham.MALOAI && s.MASP != id)
                                                  .Take(4)
                                                  .ToList();
 

@@ -104,5 +104,48 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+
+
+    <script>
+    $(document).ready(function () {
+        var searchInput = $('#searchInput');
+        var suggestionsBox = $('#searchSuggestion');
+
+        searchInput.on('input', function () {
+            var keyword = $(this).val();
+
+            if (keyword.length < 2) {
+                suggestionsBox.hide();
+                return;
+            }
+
+            // Gọi AJAX (Dạng HTML)
+            $.ajax({
+                url: '/Home/SearchSuggestion',
+                type: 'GET',
+                data: { keyword: keyword },
+                success: function (response) {
+                    suggestionsBox.html(response);
+
+                    if (response.trim() !== "") {
+                        suggestionsBox.show();
+                    } else {
+                        suggestionsBox.hide();
+                    }
+                }
+            });
+        });
+
+        // Ẩn khi click ra ngoài
+        $(document).click(function (e) {
+            if (!$(e.target).closest('form').length) {
+                suggestionsBox.hide();
+            }
+        });
+    });
+    </script>
+
+
+
 </body>
 </html>

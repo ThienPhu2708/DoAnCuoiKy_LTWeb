@@ -124,3 +124,56 @@
     background-color: var(--bs-danger);
     margin: 10px auto 0;
 }
+
+
+
+/*HOVER PROMOTION*/
+
+/*
+/*
+=====================================================
+ DÁN CODE NÀY VÀO CUỐI FILE /Content/Site.css
+ (ĐÃ FIX LỖI LOGIC HOVER)
+=====================================================
+*/
+
+/* 1. CÀI ĐẶT CHUNG CHO CARD/ẢNH */
+
+/* Container (Cha) */
+.product-image-container {
+    display: block;
+    position: relative; /* Bắt buộc để ảnh con (absolute) hoạt động */
+    overflow: hidden; 
+}
+
+/* Cả 2 ảnh (để transition mượt) */
+.product-card .card-img-top {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Ảnh Hover (Con) (Luôn ẩn và xếp chồng lên trên) */
+.product-card .img-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0; 
+}
+
+/* --- 2. XỬ LÝ LOGIC (PHẦN FIX LỖI CỦA BẠN) --- */
+
+/* 2A. NẾU KHÔNG CÓ ẢNH 2 (no-hover-image): */
+/* Chỉ "Zoom" ảnh chính */
+.product-card:hover .no-hover-image .img-main {
+    transform: scale(1.05); /* Giữ nguyên ảnh cũ, chỉ zoom */
+}
+
+/* 2B. NẾU CÓ ẢNH 2 (has-hover-image): */
+/* Chạy hiệu ứng "Lật" (Flip) */
+.product-card:hover .has-hover-image .img-main {
+    opacity: 0; /* Ẩn ảnh chính */
+    transform: scale(1); /* Tắt zoom ảnh chính */
+}
+.product-card:hover .has-hover-image .img-hover {
+    opacity: 1; /* Hiện ảnh hover */
+    transform: scale(1.05); /* (Tùy chọn) Zoom ảnh hover */
+}

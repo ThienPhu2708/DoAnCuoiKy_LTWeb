@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Đặt hàng thành công";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5 text-center">
+    <div class="card border-0 shadow-sm mx-auto" style="max-width: 600px;">
+        <div class="card-body p-5">
+            <div class="mb-4">
+                <i class="fas fa-check-circle text-success" style="font-size: 80px;"></i>
+            </div>
+
+            <h2 class="fw-bold text-success mb-3">ĐẶT HÀNG THÀNH CÔNG!</h2>
+
+            <p class="lead text-muted mb-4">
+                Cảm ơn bạn đã mua hàng tại MusicShop. <br>
+                Nhân viên của chúng tôi sẽ liên hệ với bạn sớm nhất để xác nhận đơn hàng.
+            </p>
+
+            <div class="d-flex justify-content-center gap-3">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-danger px-4">
+                    <i class="fas fa-shopping-bag me-2"></i> Tiếp tục mua sắm
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

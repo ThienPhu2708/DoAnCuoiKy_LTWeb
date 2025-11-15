@@ -36,9 +36,6 @@ namespace DoAn_LTWeb.Controllers
 
 
 
-
-
-
         [ChildActionOnly]
         public ActionResult _HeaderMenu()
         {
@@ -69,6 +66,34 @@ namespace DoAn_LTWeb.Controllers
         }
 
 
+
+        //tìm kiếm sản phẩm gần đúng
+        [HttpGet]
+        public ActionResult SearchSuggestion(string keyword)
+        {
+            if (string.IsNullOrEmpty(keyword) || keyword.Length <2)
+            {
+                return Content(""); //chuỗi rỗng
+            }
+
+            var products = data.SANPHAMs
+                .Include("SANPHAM_BIENTHE")
+                .Where(p => p.TENSP.Contains(keyword))
+                .Take(5).ToList();
+
+            return PartialView("_SearchSuggestion", products);
+        }
+
+
+
+
+
+
+        //About
+        public ActionResult About()
+        {
+            return View();
+        }
 
 
 
