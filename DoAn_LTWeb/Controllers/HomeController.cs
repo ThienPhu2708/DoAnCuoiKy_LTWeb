@@ -16,10 +16,8 @@ namespace DoAn_LTWeb.Controllers
         {
             var viewModel = new HomeViewModel();
 
-            //sản phẩm loại cha
             viewModel.ParentCategories = data.LOAISANPHAMs.Where(c => c.MALOAICHA == null).ToList();
 
-            //sản phẩm bán chạy
             viewModel.BestSeller = data.SANPHAM_BIENTHE.Include("SANPHAM")
                                                         .OrderBy(b => b.GIABAN) 
                                                         .Take(9) 
@@ -51,7 +49,6 @@ namespace DoAn_LTWeb.Controllers
 
             var allBrands = data.THUONGHIEUs.OrderBy(b => b.TENTHUONGHIEU).ToList(); // List 2
 
-            // --- 3. [MỚI] Tạo ViewModel tổng để gói 2 list lại ---
             var headerViewModel = new HeaderViewModel
             {
                 Categories = viewModel, // Gán list 1
@@ -59,9 +56,6 @@ namespace DoAn_LTWeb.Controllers
             };
             return PartialView("_HeaderMenu",headerViewModel);
         }
-
-
-
 
 
 

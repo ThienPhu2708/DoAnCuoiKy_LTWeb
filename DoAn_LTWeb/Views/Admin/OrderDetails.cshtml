@@ -1,0 +1,199 @@
+﻿@model DoAn_LTWeb.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "Chi tiết Đơn hàng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="flex flex-col md:flex-row justify-between items-center mb-6">
+    <h1 class="text-3xl font-bold text-gray-800">
+        @ViewBag.Title: <span class="text-blue-600 font-medium">#@Model.MADON</span>
+    </h1>
+    <div class="flex space-x-3 mt-3 md:mt-0">
+        @Html.ActionLink("Quay lại", "Orders", "Admin", null, new { @class = "px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition flex items-center" })
+        <a href="@Url.Action("EditOrder", "Admin", new { id = Model.MADON })" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition flex items-center">
+            <i class="fas fa-edit mr-2"></i>
+            Chỉnh sửa Đơn hàng
+        </a>
+    </div>
+</div>
+
+<!-- Card nội dung chính  -->
+<section id="order-details-section">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- ===== CỘT 1: DANH SÁCH SẢN PHẨM (2/3) ===== -->
+        <div class="lg:col-span-2 bg-white p-6 rounded-xl shadow-lg">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">
+                Chi tiết Sản phẩm
+            </h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Sản phẩm</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Đơn giá</th>
+                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">Số lượng</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Tạm tính</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+
+                        @if (Model.CHITIETDONDATHANGs != null && Model.CHITIETDONDATHANGs.Any())
+                        {
+                            foreach (var item in Model.CHITIETDONDATHANGs)
+                            {
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div class="flex-shrink-0 h-16 w-16">
+                                                <img class="h-16 w-16 rounded-lg object-cover shadow"
+                                                     src="@Url.Content(item.SANPHAM_BIENTHE?.SANPHAM?.ANHBIA ?? "https://placehold.co/64x64/E2E8F0/A0AEC0?text=Img")"
+                                                     alt="@item.SANPHAM_BIENTHE?.SANPHAM?.TENSP"
+                                                     onerror="this.src='https://placehold.co/64x64/E2E8F0/A0AEC0?text=Error'; this.onerror=null;" />
+                                            </div>
+                                            <div class="ml-4">
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    @item.SANPHAM_BIENTHE?.SANPHAM?.TENSP
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    Mã Biến thể: @item.MABIENTHE
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                        @String.Format("{0:N0} VNĐ", item.DONGIA)
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 text-center">
+                                        x @Html.DisplayFor(modelItem => item.SOLUONG)
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold text-right">
+                                        @String.Format("{0:N0} VNĐ", (item.DONGIA ?? 0) * (item.SOLUONG ?? 0))
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4" class="px-6 py-4 text-center text-gray-500 italic">Đơn hàng này không có chi tiết sản phẩm.</td>
+                            </tr>
+                        }
+                    </tbody>
+                    <!-- Tổng tiền -->
+                    <tfoot class="bg-gray-50 border-t-2 border-gray-300">
+                        <tr>
+                            <td colspan="3" class="px-6 py-3 text-right text-sm font-semibold text-gray-700 uppercase">Tổng tiền</td>
+                            <td class="px-6 py-3 text-right text-xl font-bold text-green-700">
+                                @String.Format("{0:N0} VNĐ", Model.TONGTIEN)
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <!-- ===== CỘT 2: THÔNG TIN CHI TIẾT (1/3) ===== -->
+        <div class="lg:col-span-1 space-y-6">
+
+            <!-- Card 1: Tóm tắt Đơn hàng -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Tóm tắt Đơn hàng</h2>
+                <div class="space-y-3">
+                    <div>
+                        <span class="block text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.TRANGTHAIDON)</span>
+                        @{
+                            string statusClass = "bg-gray-100 text-gray-800";
+                            string statusText = Model.TRANGTHAIDON ?? "Không rõ";
+                            switch (statusText.ToLower())
+                            {
+                                case "chờ xử lý":
+                                case "pending":
+                                    statusClass = "bg-yellow-100 text-yellow-800";
+                                    break;
+                                case "đang giao":
+                                case "shipping":
+                                case "đã xác nhận":
+                                    statusClass = "bg-blue-100 text-blue-800";
+                                    break;
+                                case "đã hoàn thành":
+                                case "delivered":
+                                    statusClass = "bg-green-100 text-green-800";
+                                    break;
+                                case "đã hủy":
+                                case "cancelled":
+                                    statusClass = "bg-red-100 text-red-800";
+                                    break;
+                            }
+                        }
+                        <span class="px-3 py-1 inline-flex text-sm leading-5 font-semibold rounded-full @statusClass">
+                            @statusText
+                        </span>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.NGAYDAT)</span>
+                        <span class="text-sm text-gray-900">@(Model.NGAYDAT.HasValue ? Model.NGAYDAT.Value.ToString("dd/MM/yyyy HH:mm:ss") : "N/A")</span>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.PHUONGTHUCTHANHTOAN)</span>
+                        <span class="text-sm text-gray-900">@Html.DisplayFor(model => model.PHUONGTHUCTHANHTOAN)</span>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.MATHANHTOAN)</span>
+                        <span class="text-sm text-gray-900">@(Model.MATHANHTOAN ?? "(Chưa có)")</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2: Thông tin Khách hàng (Từ Model.KHACHHANG) -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Thông tin Khách hàng</h2>
+                @if (Model.KHACHHANG != null)
+                {
+                    <div class="space-y-3">
+                        <div>
+                            <span class="block text-sm font-medium text-gray-500">Tên Khách hàng</span>
+                            <span class="text-sm text-gray-900">@Html.DisplayFor(model => model.KHACHHANG.HOTEN)</span>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-medium text-gray-500">Email Khách hàng</span>
+                            <span class="text-sm text-gray-900">@Html.DisplayFor(model => model.KHACHHANG.EMAIL)</span>
+                        </div>
+                        <div>
+                            <span class="block text-sm font-medium text-gray-500">SĐT Khách hàng</span>
+                            <span class="text-sm text-gray-900">@Html.DisplayFor(model => model.KHACHHANG.SDT)</span>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <span class="text-gray-500 italic">Không tìm thấy thông tin khách hàng (Mã KH: @Model.MAKH)</span>
+                }
+            </div>
+
+            <!-- Card 3: Thông tin Giao hàng (Từ Model) -->
+            <div class="bg-white p-6 rounded-xl shadow-lg">
+                <h2 class="text-xl font-semibold text-gray-700 mb-4 border-b pb-2">Thông tin Giao hàng</h2>
+                <div class="space-y-3">
+                    <div>
+                        <span class="block text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.TENNGUOINHAN)</span>
+                        <span class="text-sm text-gray-900">@Html.DisplayFor(model => model.TENNGUOINHAN)</span>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.SDT_GIAO)</span>
+                        <span class="text-sm text-gray-900">@Html.DisplayFor(model => model.SDT_GIAO)</span>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.EMAIL) (Giao hàng)</span>
+                        <span class="text-sm text-gray-900">@Html.DisplayFor(model => model.EMAIL)</span>
+                    </div>
+                    <div>
+                        <span class="block text-sm font-medium text-gray-500">@Html.DisplayNameFor(model => model.DIACHI_GIAO)</span>
+                        <p class="text-sm text-gray-900">@Html.DisplayFor(model => model.DIACHI_GIAO)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
