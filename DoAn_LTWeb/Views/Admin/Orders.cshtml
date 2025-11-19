@@ -1,0 +1,138 @@
+﻿﻿@model IEnumerable<DoAn_LTWeb.Models.DONDATHANG>
+
+@{
+    ViewBag.Title = "Quản lý Đơn đặt hàng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-3xl font-bold text-gray-800 mb-6 border-b border-gray-300 pb-3">
+    @ViewBag.Title
+</h1>
+
+<section id="orders-section">
+    <div class="bg-white p-6 rounded-xl shadow-lg">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-5 space-y-3 md:space-y-0">
+            <h2 class="text-xl font-semibold text-gray-700">Tất cả Đơn hàng</h2>
+        </div>
+
+        <!-- Thanh tìm kiếm và bộ lọc  -->
+        @using (Html.BeginForm("Orders", "Admin", FormMethod.Get, new { @class = "flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4" }))
+        {
+            <div class="relative flex-grow">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <i class="fas fa-search text-gray-400"></i>
+                </span>
+                <input type="text" name="searchQuery" value="@ViewBag.CurrentSearch" placeholder="Tìm theo Mã KH, Tên người nhận, SĐT..." class="pl-10 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+
+            @Html.DropDownList("status", (IEnumerable<SelectListItem>)ViewBag.StatusList, "Lọc theo Trạng thái", new { @class = "p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
+
+            <!-- Thêm nút Lọc -->
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center shadow-md transition duration-200">
+                <i class="fas fa-filter mr-2"></i>
+                Lọc
+            </button>
+        }
+        <!-- Bảng danh sách đơn hàng -->
+        <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.MAKH)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.TENNGUOINHAN)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.NGAYDAT)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.TONGTIEN)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.TRANGTHAIDON)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.PHUONGTHUCTHANHTOAN)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.DIACHI_GIAO)
+                        </th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Hành động
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                <!-- Hiển thị tên khách hàng -->
+                                @Html.DisplayFor(modelItem => item.MAKH)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                @Html.DisplayFor(modelItem => item.TENNGUOINHAN)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                <!-- Định dạng lại ngày tháng -->
+                                @(item.NGAYDAT.HasValue ? item.NGAYDAT.Value.ToString("dd/MM/yyyy") : "N/A")
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-semibold text-green-700">
+                                <!-- Định dạng tiền tệ -->
+                                @String.Format("{0:N0} VNĐ", item.TONGTIEN)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+                                <!-- Hiển thị Trạng thái bằng badge màu -->
+                                @{
+                                    string statusClass = "bg-gray-100 text-gray-800";
+                                    string statusText = item.TRANGTHAIDON ?? "Không rõ";
+
+                                    switch (statusText.ToLower())
+                                    {
+                                        case "chờ xử lý":
+                                        case "pending":
+                                            statusClass = "bg-yellow-100 text-yellow-800";
+                                            break;
+                                        case "đang giao":
+                                        case "shipping":
+                                        case "đã xác nhận":
+                                            statusClass = "bg-blue-100 text-blue-800";
+                                            break;
+                                        case "đã hoàn thành":
+                                        case "delivered":
+                                            statusClass = "bg-green-100 text-green-800";
+                                            break;
+                                        case "đã hủy":
+                                        case "cancelled":
+                                            statusClass = "bg-red-100 text-red-800";
+                                            break;
+                                    }
+                                }
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full @statusClass">
+                                    @statusText
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                @Html.DisplayFor(modelItem => item.PHUONGTHUCTHANHTOAN)
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title="@item.DIACHI_GIAO">
+                                @Html.DisplayFor(modelItem => item.DIACHI_GIAO)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                <a href="@Url.Action("EditOrder", "Admin", new { id = item.MADON })" class="text-indigo-600 hover:text-indigo-900 mx-1 p-1 rounded-md" title="Sửa">
+                                    <i class="fas fa-edit fa-fw"></i>
+                                </a>
+                                <a href="@Url.Action("OrderDetails", "Admin", new { id = item.MADON })" class="text-blue-600 hover:text-blue-900 mx-1 p-1 rounded-md" title="Xem chi tiết">
+                                    <i class="fas fa-eye fa-fw"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

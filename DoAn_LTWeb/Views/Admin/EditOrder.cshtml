@@ -1,0 +1,118 @@
+﻿﻿@model DoAn_LTWeb.Models.DONDATHANG
+
+@{
+    ViewBag.Title = "Cập nhật Đơn hàng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-3xl font-bold text-gray-800 mb-6 border-b border-gray-300 pb-3">
+    @ViewBag.Title: <span class="text-blue-600 font-medium">#@Model.MADON</span>
+</h1>
+
+<section id="edit-order-section">
+    @using (Html.BeginForm("EditOrder", "Admin", FormMethod.Post, new { @class = "space-y-6" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+
+            @Html.ValidationSummary(true, "", new { @class = "text-red-600 bg-red-50 p-3 rounded-lg text-sm mb-4" })
+
+            @Html.HiddenFor(model => model.MADON)
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- ===== CỘT 1: THÔNG TIN ĐƠN HÀNG ===== -->
+                <div class="lg:col-span-1 space-y-4 p-4 border rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 border-b pb-2">Thông tin Đơn hàng</h4>
+
+                    <div>
+                        @Html.LabelFor(model => model.TRANGTHAIDON, "Trạng thái Đơn hàng", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        <!-- Controller đã cung cấp 'ViewBag.TRANGTHAIDON' -->
+                        @Html.DropDownListFor(model => model.TRANGTHAIDON, (IEnumerable<SelectListItem>)ViewBag.TRANGTHAIDON, new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
+                        @Html.ValidationMessageFor(model => model.TRANGTHAIDON, "", new { @class = "text-red-600 text-xs mt-1" })
+                    </div>
+
+                    <!-- Khách hàng (Dropdown) -->
+                    <div>
+                        @Html.LabelFor(model => model.MAKH, "Khách hàng", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        @Html.DropDownListFor(model => model.MAKH, (IEnumerable<SelectListItem>)ViewBag.MAKH, new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
+                        @Html.ValidationMessageFor(model => model.MAKH, "", new { @class = "text-red-600 text-xs mt-1" })
+                    </div>
+
+                    <!-- Ngày đặt (Read-only) -->
+                    <div>
+                        @Html.LabelFor(model => model.NGAYDAT, "Ngày đặt", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        <p class="w-full p-2 border border-gray-200 bg-gray-50 rounded-lg text-gray-600">
+                            @(Model.NGAYDAT.HasValue ? Model.NGAYDAT.Value.ToString("dd/MM/yyyy HH:mm:ss") : "N/A")
+                        </p>
+                    </div>
+
+                    <!-- Tổng tiền (Read-only) -->
+                    <div>
+                        @Html.LabelFor(model => model.TONGTIEN, "Tổng tiền", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        <p class="w-full p-2 border border-gray-200 bg-gray-50 rounded-lg text-green-700 font-semibold">
+                            @String.Format("{0:N0} VNĐ", Model.TONGTIEN)
+                        </p>
+                    </div>
+
+                    <!-- Phương thức Thanh toán -->
+                    <div>
+                        @Html.LabelFor(model => model.PHUONGTHUCTHANHTOAN, "Phương thức TT", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        @Html.EditorFor(model => model.PHUONGTHUCTHANHTOAN, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" } })
+                        @Html.ValidationMessageFor(model => model.PHUONGTHUCTHANHTOAN, "", new { @class = "text-red-600 text-xs mt-1" })
+                    </div>
+
+                    <!-- Mã Thanh toán -->
+                    <div>
+                        @Html.LabelFor(model => model.MATHANHTOAN, "Mã giao dịch TT", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        @Html.EditorFor(model => model.MATHANHTOAN, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" } })
+                        @Html.ValidationMessageFor(model => model.MATHANHTOAN, "", new { @class = "text-red-600 text-xs mt-1" })
+                    </div>
+                </div>
+
+                <!-- ===== CỘT 2: THÔNG TIN GIAO HÀNG ===== -->
+                <div class="lg:col-span-1 space-y-4 p-4 border rounded-lg">
+                    <h4 class="text-lg font-semibold text-gray-800 border-b pb-2">Thông tin Giao hàng</h4>
+
+                    <!-- Tên người nhận -->
+                    <div>
+                        @Html.LabelFor(model => model.TENNGUOINHAN, "Tên người nhận", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        @Html.EditorFor(model => model.TENNGUOINHAN, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" } })
+                        @Html.ValidationMessageFor(model => model.TENNGUOINHAN, "", new { @class = "text-red-600 text-xs mt-1" })
+                    </div>
+
+                    <!-- Địa chỉ giao (Text Area) -->
+                    <div>
+                        @Html.LabelFor(model => model.DIACHI_GIAO, "Địa chỉ giao hàng", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        @Html.TextAreaFor(model => model.DIACHI_GIAO, new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400", rows = 4 })
+                        @Html.ValidationMessageFor(model => model.DIACHI_GIAO, "", new { @class = "text-red-600 text-xs mt-1" })
+                    </div>
+
+                    <!-- SĐT Giao -->
+                    <div>
+                        @Html.LabelFor(model => model.SDT_GIAO, "SĐT Giao hàng", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        @Html.EditorFor(model => model.SDT_GIAO, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" } })
+                        @Html.ValidationMessageFor(model => model.SDT_GIAO, "", new { @class = "text-red-600 text-xs mt-1" })
+                    </div>
+
+                    <!-- Email -->
+                    <div>
+                        @Html.LabelFor(model => model.EMAIL, "Email", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                        @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400", type = "email" } })
+                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-red-600 text-xs mt-1" })
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="flex items-center justify-end space-x-4 pt-5 border-t border-gray-200 mt-6">
+                @Html.ActionLink("Quay lại", "Orders", "Admin", null, new { @class = "px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition" })
+
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition flex items-center">
+                    <i class="fas fa-save mr-2"></i>
+                    Lưu thay đổi
+                </button>
+            </div>
+        </div>
+    }
+</section>
