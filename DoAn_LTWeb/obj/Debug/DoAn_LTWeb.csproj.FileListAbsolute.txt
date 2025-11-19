@@ -164,3 +164,7 @@ E:\Nam3_DH\DoAnLTWeb\DoAnCuoiKy_LTWeb\DoAn_LTWeb\obj\Debug\DoAn_LTWeb.csproj.Cor
 E:\Nam3_DH\DoAnLTWeb\DoAnCuoiKy_LTWeb\DoAn_LTWeb\obj\Debug\DoAn_LTWeb.csproj.Up2Date
 E:\Nam3_DH\DoAnLTWeb\DoAnCuoiKy_LTWeb\DoAn_LTWeb\obj\Debug\DoAn_LTWeb.dll
 E:\Nam3_DH\DoAnLTWeb\DoAnCuoiKy_LTWeb\DoAn_LTWeb\obj\Debug\DoAn_LTWeb.pdb
+E:\Nam3_DH\DoAnLTWeb\DoAnCuoiKy_LTWeb\DoAn_LTWeb\bin\PagedList.dll
+E:\Nam3_DH\DoAnLTWeb\DoAnCuoiKy_LTWeb\DoAn_LTWeb\bin\PagedList.Mvc.dll
+E:\Nam3_DH\DoAnLTWeb\DoAnCuoiKy_LTWeb\DoAn_LTWeb\bin\PagedList.xml
+E:\Nam3_DH\DoAnLTWeb\DoAnCuoiKy_LTWeb\DoAn_LTWeb\bin\PagedList.Mvc.xml

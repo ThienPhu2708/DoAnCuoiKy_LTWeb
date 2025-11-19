@@ -1,0 +1,19 @@
+﻿﻿ /* Sử dụng font Inter làm font chữ chính */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Custom scrollbar cho đẹp hơn */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a0aec0;
+    }

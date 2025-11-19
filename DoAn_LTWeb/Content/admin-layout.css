@@ -1,0 +1,39 @@
+﻿﻿ /* Tùy chỉnh font chữ */
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Định nghĩa màu chủ đạo (dùng trong file .css nếu Tailwind không nhận ra) */
+:root {
+    --primary-yellow: #fecf00;
+    --primary-pink: #e30074;
+    --dark-text: #1f2937;
+}
+
+/* Tùy chỉnh link sidebar */
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    color: #D1D5DB; /* text-gray-300 */
+    font-weight: 500;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+    /* Khi hover: Dùng màu vàng */
+    .nav-link:hover {
+        background-color: #374151; /* gray-700 */
+        color: var(--primary-yellow);
+    }
+
+    /* Link active (được chọn): Nền vàng, chữ đậm */
+    .nav-link.active {
+        background-color: var(--primary-yellow);
+        color: var(--dark-text);
+        font-weight: 600;
+    }
+
+    .nav-link i {
+        text-align: center;
+    }

@@ -62,7 +62,7 @@ namespace DoAn_LTWeb.Controllers
                 Categories = viewModel, // Gán list 1
                 Brands = allBrands              // Gán list 2
             };
-            return PartialView("_HeaderMenu",headerViewModel);
+            return PartialView("_HeaderMenu",headerViewModel);  
         }
 
 

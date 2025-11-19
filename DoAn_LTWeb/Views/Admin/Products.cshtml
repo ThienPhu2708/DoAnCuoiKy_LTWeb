@@ -1,0 +1,121 @@
+﻿﻿@model IEnumerable<DoAn_LTWeb.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+
+
+<h1 class="text-3xl font-bold text-gray-800 mb-6 border-b border-gray-300 pb-3">
+    @ViewBag.Title
+</h1>
+
+<section id="products-section">
+    <div class="bg-white p-6 rounded-xl shadow-lg">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-5 space-y-3 md:space-y-0">
+            <h2 class="text-xl font-semibold text-gray-700">Tất cả Sản phẩm</h2>
+
+            <!-- Nút "Thêm mới" -->
+            <a href="@Url.Action("CreateProduct", "Admin")" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center shadow-md transition duration-200">
+                <i class="fas fa-plus mr-2"></i>
+                Thêm Sản phẩm mới
+            </a>
+        </div>
+
+        <!-- Thanh tìm kiếm và bộ lọc  -->
+        @using (Html.BeginForm("Products", "Admin", FormMethod.Get, new { @class = "flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4" }))
+        {
+            <div class="relative flex-grow">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <i class="fas fa-search text-gray-400"></i>
+                </span>
+                <input type="text" name="searchQuery" value="@ViewBag.CurrentSearch" placeholder="Tìm kiếm theo tên sản phẩm..." class="pl-10 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            @Html.DropDownList("categoryId", (IEnumerable<SelectListItem>)ViewBag.MALOAI, "Lọc theo Loại sản phẩm", new { @class = "p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
+
+            @Html.DropDownList("brandId", (IEnumerable<SelectListItem>)ViewBag.MATHUONGHIEU, "Lọc theo Thương hiệu", new { @class = "p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
+
+            <!-- SỬA: Thêm nút Lọc/Tìm kiếm -->
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center shadow-md transition duration-200">
+                <i class="fas fa-filter mr-2"></i>
+                Lọc
+            </button>
+        }
+        <!-- Bảng danh sách sản phẩm -->
+        <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.MASP)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.TENSP)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.MALOAI)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.MATHUONGHIEU)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.MOTA)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.ANHBIA)
+                        </th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Hành động
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                @Html.DisplayFor(modelItem => item.MASP)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                @Html.DisplayFor(modelItem => item.TENSP)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                @Html.DisplayFor(modelItem => item.LOAISANPHAM.TENLOAI)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                @Html.DisplayFor(modelItem => item.THUONGHIEU.TENTHUONGHIEU)
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600 max-w-xs truncate">
+                                @Html.DisplayFor(modelItem => item.MOTA)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                <!-- Hiển thị ảnh bìa nếu có -->
+                                @if (!string.IsNullOrEmpty(item.ANHBIA))
+                                {
+                                    <img src="@Url.Content("~/Content/Assets/Product_Images/" + item.ANHBIA)" alt="@item.TENSP" class="h-12 w-12 object-cover rounded-md shadow" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+                                    <span class="text-gray-400 text-xs" style="display:none;">Lỗi ảnh</span>
+                                }
+                                else
+                                {
+                                    <span class="text-gray-400 text-xs">Không có ảnh</span>
+                                }
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                <a href="@Url.Action("EditProduct", "Admin", new { id = item.MASP })" class="text-indigo-600 hover:text-indigo-900 mx-1 p-1 rounded-md" title="Sửa">
+                                    <i class="fas fa-edit fa-fw"></i>
+                                </a>
+                                <a href="@Url.Action("DeleteProduct", "Admin", new { id = item.MASP })" class="text-red-600 hover:text-red-900 mx-1 p-1 rounded-md" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');" title="Xóa">
+                                    <i class="fas fa-trash-alt fa-fw"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>

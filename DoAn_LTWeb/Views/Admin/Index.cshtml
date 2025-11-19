@@ -1,0 +1,94 @@
+﻿﻿@{
+    ViewBag.Title = "Tổng quan";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-3xl font-bold text-gray-800 mb-6">@ViewBag.Title</h1>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+    <!-- 1. Quản lý Sản phẩm (Màu Cam) -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <!-- Phần nội dung -->
+        <div class="p-5 flex justify-between items-center bg-orange-500 text-white">
+            <div class_brief="content">
+                <div class="text-4xl font-bold">@ViewBag.ProductCount</div>
+                <div class="text-lg font-semibold">Sản phẩm</div>
+            </div>
+            <div class="text-5xl opacity-70">
+                <i class="fas fa-box-open"></i>
+            </div>
+        </div>
+        <a href="@Url.Action("Products", "Admin")" class="block p-3 text-center bg-orange-600 hover:bg-orange-700 text-white font-semibold transition-colors">
+            Chi tiết <i class="fas fa-arrow-circle-right ml-1"></i>
+        </a>
+    </div>
+
+    <!-- 2. Quản lý Loại sản phẩm (Màu Xanh lá) -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <!-- Phần nội dung -->
+        <div class="p-5 flex justify-between items-center bg-green-500 text-white">
+            <div class_brief="content">
+                <div class="text-4xl font-bold">@ViewBag.CategoryCount</div>
+                <div class="text-lg font-semibold">Loại sản phẩm</div>
+            </div>
+            <div class="text-5xl opacity-70">
+                <i class="fas fa-sitemap"></i>
+            </div>
+        </div>
+        <a href="@Url.Action("Categories", "Admin")" class="block p-3 text-center bg-green-600 hover:bg-green-700 text-white font-semibold transition-colors">
+            Chi tiết <i class="fas fa-arrow-circle-right ml-1"></i>
+        </a>
+    </div>
+
+    <!-- 3. Quản lý Đơn hàng (Màu Xanh dương) -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <!-- Phần nội dung -->
+        <div class="p-5 flex justify-between items-center bg-blue-500 text-white">
+            <div class_brief="content">
+                <div class="text-4xl font-bold">@ViewBag.OrderCount</div>
+                <div class="text-lg font-semibold">Đơn hàng</div>
+            </div>
+            <div class="text-5xl opacity-70">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+        </div>
+        <a href="@Url.Action("Orders", "Admin")" class="block p-3 text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors">
+            Chi tiết <i class="fas fa-arrow-circle-right ml-1"></i>
+        </a>
+    </div>
+
+    <!-- 4. Quản lý Khách hàng (Màu Vàng) -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <!-- Phần nội dung -->
+        <div class="p-5 flex justify-between items-center bg-yellow-500 text-white">
+            <div class_brief="content">
+                <div class="text-4xl font-bold">@ViewBag.CustomerCount</div>
+                <div class="text-lg font-semibold">Khách hàng</div>
+            </div>
+            <div class="text-5xl opacity-70">
+                <i class="fas fa-users"></i>
+            </div>
+        </div>
+        <a href="@Url.Action("Customers", "Admin")" class="block p-3 text-center bg-yellow-600 hover:bg-yellow-700 text-white font-semibold transition-colors">
+            Chi tiết <i class="fas fa-arrow-circle-right ml-1"></i>
+        </a>
+    </div>
+
+    <!-- 6. Thống kê & Báo cáo (Màu Đỏ) -->
+    <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="p-5 flex justify-between items-center bg-red-500 text-white">
+            <div class_brief="content">
+                <div class="text-4xl font-bold">@ViewBag.NewReportCount</div>
+                <div class="text-lg font-semibold">Thống kê và báo cáo doanh thu</div>
+            </div>
+            <div class="text-5xl opacity-70">
+                <i class="fas fa-chart-line"></i>
+            </div>
+        </div>
+        <a href="@Url.Action("Statistics", "Admin")" class="block p-3 text-center bg-red-600 hover:bg-red-700 text-white font-semibold transition-colors">
+            Chi tiết <i class="fas fa-arrow-circle-right ml-1"></i>
+        </a>
+    </div>
+
+</div>

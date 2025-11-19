@@ -1,0 +1,113 @@
+﻿﻿@model IEnumerable<DoAn_LTWeb.Models.KHACHHANG>
+
+@{
+    ViewBag.Title = "Quản lý Khách hàng";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1 class="text-3xl font-bold text-gray-800 mb-6 border-b border-gray-300 pb-3">
+    @ViewBag.Title
+</h1>
+
+<section id="customers-section">
+    <div class="bg-white p-6 rounded-xl shadow-lg">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-5 space-y-3 md:space-y-0">
+            <h2 class="text-xl font-semibold text-gray-700">Tất cả Khách hàng</h2>
+        </div>
+
+        @using (Html.BeginForm("Customers", "Admin", FormMethod.Get, new { @class = "flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-4 mb-4" }))
+        {
+            <div class="relative flex-grow">
+                <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <i class="fas fa-search text-gray-400"></i>
+                </span>
+                <input type="text" name="searchQuery" value="@ViewBag.CurrentSearch" placeholder="Tìm theo Tên, SĐT, Email..." class="pl-10 p-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+            </div>
+            @Html.DropDownList("roleId", (IEnumerable<SelectListItem>)ViewBag.RoleList, "Lọc theo Vai trò", new { @class = "p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
+
+            <!-- SỬA: Thêm nút Lọc -->
+            <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg flex items-center justify-center shadow-md transition duration-200">
+                <i class="fas fa-filter mr-2"></i>
+                Lọc
+            </button>
+        }
+        <!-- Bảng danh sách khách hàng -->
+        <div class="overflow-x-auto rounded-lg border border-gray-200">
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                    <tr>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.HOTEN)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.SDT)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.EMAIL)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.DIACHI_MACDINH)
+                        </th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            @Html.DisplayNameFor(model => model.MAVAITRO)
+                        </th>
+                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Hành động
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                @Html.DisplayFor(modelItem => item.HOTEN)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                @Html.DisplayFor(modelItem => item.SDT)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                @Html.DisplayFor(modelItem => item.EMAIL)
+                            </td>
+                            <td class="px-6 py-4 text-sm text-gray-600 max-w-xs truncate" title="@item.DIACHI_MACDINH">
+                                @Html.DisplayFor(modelItem => item.DIACHI_MACDINH)
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                @{
+                                    string roleClass = "bg-gray-100 text-gray-800";
+                                    string roleText = "Không rõ";
+
+                                    if (item.VAITRO != null)
+                                    {
+                                        roleText = item.VAITRO.TENVAITRO;
+                                        switch (item.MAVAITRO)
+                                        {
+                                            case 1:
+                                                roleClass = "bg-red-100 text-red-800";
+                                                break;
+                                            case 2:
+                                                roleClass = "bg-green-100 text-green-800";
+                                                break;
+                                        }
+                                    }
+                                }
+                                <span class="px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full @roleClass">
+                                    @roleText
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                <a href="@Url.Action("EditCustomer", "Admin", new { id = item.MAKH })" class="text-indigo-600 hover:text-indigo-900 mx-1 p-1 rounded-md" title="Sửa">
+                                    <i class="fas fa-edit fa-fw"></i>
+                                </a>
+                                <a href="@Url.Action("CustomerDetails", "Admin", new { id = item.MAKH })" class="text-blue-600 hover:text-blue-900 mx-1 p-1 rounded-md" title="Xem chi tiết">
+                                    <i class="fas fa-eye fa-fw"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
