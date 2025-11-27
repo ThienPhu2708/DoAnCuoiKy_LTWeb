@@ -34,7 +34,9 @@
   const getUID = prefix => {
     do {
       prefix += Math.floor(Math.random() * MAX_UID);
-    } while (document.getElementById(prefix));
+    } while (
+        
+        (prefix));
 
     return prefix;
   };

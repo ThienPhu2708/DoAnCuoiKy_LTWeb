@@ -82,6 +82,7 @@ namespace DoAn_LTWeb.Controllers
 
           [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult CreateProduct(ProductCreateViewModel viewModel) 
         {
             ViewBag.Title = "Thêm sản phẩm mới";
@@ -146,70 +147,118 @@ namespace DoAn_LTWeb.Controllers
             return View(viewModel);
         }
 
-
         public ActionResult EditProduct(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SANPHAM product = db.SANPHAMs.Find(id);
 
+            // Tìm sản phẩm
+            SANPHAM product = db.SANPHAMs.Find(id);
             if (product == null)
-            {   
+            {
                 return HttpNotFound();
             }
 
+            // Lấy danh sách thông số kỹ thuật cũ để hiển thị lên bảng
+            ViewBag.ListThongSo = db.THONGSO_KYTHUATs
+                                    .Where(t => t.MASP == id)
+                                    .OrderBy(t => t.NHOM_THONGSO) // Sắp xếp theo nhóm 
+                                    .ToList();
+
+            // Tìm biến thể (Ruột)
             SANPHAM_BIENTHE variant = db.SANPHAM_BIENTHE.FirstOrDefault(v => v.MASP == id);
             if (variant == null)
             {
-                // (Xử lý nếu Vỏ có mà Ruột không có -> nên tạo 1 Ruột rỗng)
+                // Nếu chưa có ruột thì tạo ruột rỗng để không bị lỗi null bên View
                 variant = new SANPHAM_BIENTHE { MASP = id };
             }
 
+            // Đóng gói vào ViewModel
             var viewModel = new ProductCreateViewModel
             {
                 SanPham = product,
                 BienThe = variant
             };
 
-
+            // Tạo Dropdown cho Loại và Thương hiệu
             ViewBag.MALOAI = new SelectList(db.LOAISANPHAMs.Where(l => l.MALOAICHA != null), "MALOAI", "TENLOAI", product.MALOAI);
             ViewBag.MATHUONGHIEU = new SelectList(db.THUONGHIEUs, "MATHUONGHIEU", "TENTHUONGHIEU", product.MATHUONGHIEU);
 
             ViewBag.Title = "Chỉnh sửa sản phẩm";
             return View(viewModel);
         }
+        [HttpPost]
+        public JsonResult QuickAddBrand(string tenThuongHieu)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(tenThuongHieu))
+                {
+                    // 1. Kiểm tra xem có trùng tên chưa
+                    var exist = db.THUONGHIEUs.FirstOrDefault(t => t.TENTHUONGHIEU == tenThuongHieu);
+                    if (exist != null)
+                    {
+                        return Json(new { success = false, message = "Thương hiệu này đã có rồi!" });
+                    }
 
+                    // 2. Tạo mới (Chỉ cần tên, mấy cái khác để null hoặc mặc định)
+                    var brand = new THUONGHIEU();
+                    brand.TENTHUONGHIEU = tenThuongHieu;
+                    // brand.ANH = ... (Nếu bắt buộc ảnh thì phải gán ảnh mặc định ở đây)
 
+                    db.THUONGHIEUs.Add(brand);
+                    db.SaveChanges();
 
-
+                    // 3. Trả về ID và Tên để Dropdown tự chọn
+                    return Json(new { success = true, id = brand.MATHUONGHIEU, name = brand.TENTHUONGHIEU });
+                }
+                return Json(new { success = false, message = "Tên không được để trống" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProduct(ProductCreateViewModel viewModel)
+        [ValidateInput(false)] //  Cho phép lưu mã HTML từ CKEditor
+        public ActionResult EditProduct(ProductCreateViewModel viewModel, HttpPostedFileBase fileUpload, string[] TS_Nhom, string[] TS_Ten, string[] TS_Giatri)
         {
+            // Load lại Dropdown phòng khi lỗi phải trả về View
             ViewBag.MALOAI = new SelectList(db.LOAISANPHAMs.Where(l => l.MALOAICHA != null), "MALOAI", "TENLOAI", viewModel.SanPham.MALOAI);
             ViewBag.MATHUONGHIEU = new SelectList(db.THUONGHIEUs, "MATHUONGHIEU", "TENTHUONGHIEU", viewModel.SanPham.MATHUONGHIEU);
 
+            // Kiểm tra dữ liệu đầu vào
+            if (!ModelState.IsValid) { return View(viewModel); }
 
-            if (!ModelState.IsValid)
+            // 2. LOGIC XỬ LÝ ẢNH BÌA (MỚI THÊM)
+            string tenFileAnh = viewModel.SanPham.ANHBIA; // Mặc định lấy ảnh cũ
+
+            // Kiểm tra: Nếu có chọn ảnh mới (fileUpload không null)
+            if (fileUpload != null && fileUpload.ContentLength > 0)
             {
-                return View(viewModel);
+                // a. Tạo tên file mới
+                string _FileName = Path.GetFileName(fileUpload.FileName);
+                _FileName = Guid.NewGuid().ToString().Substring(0, 8) + "_" + _FileName;
+
+                // b. Lưu file vào server
+                string _path = Path.Combine(Server.MapPath("~/Content/Assets/Product_Images"), _FileName);
+                fileUpload.SaveAs(_path);
+
+                // c. Cập nhật tên file mới vào biến để tí nữa lưu xuống SQL
+                tenFileAnh = _FileName;
             }
 
-            string tenFileAnh = viewModel.SanPham.ANHBIA;
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(viewModel);
-                }
-
+                // XỬ LÝ LƯU SẢN PHẨM CHÍNH (GỌI STORED PROCEDURE)
                 db.Database.ExecuteSqlCommand(
                     "EXEC SP_SUASANPHAM @MASP, @MABIENTHE, @TENSP, @MALOAI, @MATHUONGHIEU, @MOTA, @ANHBIA, @TENBIENTHE, @GIAGOC, @GIABAN, @SOLUONGTON",
-                    new SqlParameter("@MASP", viewModel.SanPham.MASP), // Key Vỏ
-                    new SqlParameter("@MABIENTHE", viewModel.BienThe.MABIENTHE), // Key Ruột
+                    new SqlParameter("@MASP", viewModel.SanPham.MASP),
+                    new SqlParameter("@MABIENTHE", viewModel.BienThe.MABIENTHE),
 
                     new SqlParameter("@TENSP", viewModel.SanPham.TENSP),
                     new SqlParameter("@MALOAI", (object)viewModel.SanPham.MALOAI ?? DBNull.Value),
@@ -217,25 +266,25 @@ namespace DoAn_LTWeb.Controllers
                     new SqlParameter("@MOTA", (object)viewModel.SanPham.MOTA ?? DBNull.Value),
                     new SqlParameter("@ANHBIA", (object)tenFileAnh ?? DBNull.Value),
 
-                    new SqlParameter("@TENBIENTHE", viewModel.BienThe.TENBIENTHE),
-                    new SqlParameter("@GIAGOC", viewModel.BienThe.GIAGOC),
-                    new SqlParameter("@GIABAN", viewModel.BienThe.GIABAN),
-                    new SqlParameter("@SOLUONGTON", viewModel.BienThe.SOLUONGTON)
-                         );
+                    // Xử lý Null cho Biến thể (Quan trọng)
+                    new SqlParameter("@TENBIENTHE", (object)viewModel.BienThe.TENBIENTHE ?? DBNull.Value),
+                    new SqlParameter("@GIAGOC", (object)viewModel.BienThe.GIAGOC ?? 0),
+                    new SqlParameter("@GIABAN", (object)viewModel.BienThe.GIABAN ?? 0),
+                    new SqlParameter("@SOLUONGTON", (object)viewModel.BienThe.SOLUONGTON ?? 0)
+                );
 
+                // XỬ LÝ ẢNH GALLERY (NẾU CÓ UP MỚI)
                 if (viewModel.GalleryFiles != null && viewModel.GalleryFiles.Any())
                 {
                     foreach (var file in viewModel.GalleryFiles)
                     {
                         if (file != null && file.ContentLength > 0)
                         {
-                            // a. Lưu file ảnh gallery
                             string tenFileGallery = Path.GetFileName(file.FileName);
                             tenFileGallery = Guid.NewGuid().ToString().Substring(0, 8) + "_" + tenFileGallery;
                             string pathLuuFileGallery = Path.Combine(Server.MapPath("~/Content/Assets/Product_Images"), tenFileGallery);
                             file.SaveAs(pathLuuFileGallery);
 
-                            // b. GỌI SP_THEM_ANHSP cho từng ảnh
                             db.Database.ExecuteSqlCommand(
                                 "EXEC SP_THEM_ANHSP @MASP, @URL_ANH",
                                 new SqlParameter("@MASP", viewModel.SanPham.MASP),
@@ -245,13 +294,43 @@ namespace DoAn_LTWeb.Controllers
                     }
                 }
 
-               return RedirectToAction("Products");
-            }
+                // XỬ LÝ LƯU THÔNG SỐ KỸ THUẬT (MỚI THÊM)
+                // Bước 1: Xóa sạch thông số cũ của SP này đi
+                var oldSpecs = db.THONGSO_KYTHUATs.Where(t => t.MASP == viewModel.SanPham.MASP);
+                db.THONGSO_KYTHUATs.RemoveRange(oldSpecs);
+                db.SaveChanges();
 
+                // Bước 2: Thêm lại danh sách mới từ Mảng (Array) gửi lên
+                if (TS_Ten != null && TS_Giatri != null)
+                {
+                    for (int i = 0; i < TS_Ten.Length; i++)
+                    {
+                        // Chỉ lưu những dòng có dữ liệu (Tên và Giá trị không rỗng)
+                        if (!string.IsNullOrEmpty(TS_Ten[i]) && !string.IsNullOrEmpty(TS_Giatri[i]))
+                        {
+                            var spec = new THONGSO_KYTHUAT();
+                            spec.MASP = viewModel.SanPham.MASP;
+                            // Lấy nhóm tương ứng (nếu có)
+                            spec.NHOM_THONGSO = (TS_Nhom != null && TS_Nhom.Length > i) ? TS_Nhom[i] : null;
+                            spec.TEN_THONGSO = TS_Ten[i];
+                            spec.GIATRI = TS_Giatri[i];
+
+                            db.THONGSO_KYTHUATs.Add(spec);
+                        }
+                    }
+                    db.SaveChanges(); // Lưu đợt 2 (Lưu thông số)
+                }
+                TempData["ThongBao"] = "Đã lưu thay đổi thành công!";
+                // LƯU XONG QUAY LẠI TRANG EDIT ĐỂ SỬA TIẾP (KHÔNG VĂNG RA LIST)
+                return RedirectToAction("EditProduct", new { id = viewModel.SanPham.MASP });
+            }
             catch (Exception ex)
             {
+                // Nếu lỗi thì hiện thông báo đỏ lên Form
                 ModelState.AddModelError("", "Lỗi CSDL: " + ex.Message);
             }
+
+            // Nếu lỗi thì trả về View cũ kèm dữ liệu để người dùng sửa lại
             return View(viewModel);
         }
 
@@ -723,6 +802,84 @@ namespace DoAn_LTWeb.Controllers
                 .ToList();
 
             return Json(data, JsonRequestBehavior.AllowGet);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ThemThongSo(string masp, string nhom, string ten, string giatri)
+        {
+            if (!string.IsNullOrEmpty(masp) && !string.IsNullOrEmpty(ten))
+            {
+                var ts = new THONGSO_KYTHUAT();
+                ts.MASP = masp;
+                ts.NHOM_THONGSO = nhom;
+                ts.TEN_THONGSO= ten;
+                ts.GIATRI = giatri;
+
+                db.THONGSO_KYTHUATs.Add(ts);
+                db.SaveChanges();
+            }
+            // Load lại trang Edit
+            return RedirectToAction("EditProduct", new { id = masp });
+        }
+
+        public ActionResult XoaThongSo(int id)
+        {
+            var ts = db.THONGSO_KYTHUATs.Find(id);
+            if (ts != null)
+            {
+                string masp = ts.MASP;
+                db.THONGSO_KYTHUATs.Remove(ts);
+                db.SaveChanges();
+                return RedirectToAction("EditProduct", new { id = masp });
+            }
+            return RedirectToAction("Products");
+        }
+        public ActionResult SuaThongSo(int id)
+        {
+            var ts = db.THONGSO_KYTHUATs.Find(id);
+            if (ts == null) return HttpNotFound();
+
+            ViewBag.Title = "Cập nhật thông số";
+            return View(ts);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SuaThongSo(THONGSO_KYTHUAT model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("EditProduct", new { id = model.MASP });
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult ProcessUpload(HttpPostedFileBase upload)
+        {
+            if (upload != null && upload.ContentLength > 0)
+            {
+                // 1. Đặt tên file ảnh (Dùng Guid để không bị trùng tên)
+                string tenFile = Guid.NewGuid().ToString() + "_" + Path.GetFileName(upload.FileName);
+
+                // 2. Lưu vào thư mục ảnh sản phẩm cũ của bạn
+                string path = Path.Combine(Server.MapPath("~/Content/Assets/Product_Images"), tenFile);
+                upload.SaveAs(path);
+
+                // 3. Trả về JSON theo đúng chuẩn mà CKEditor yêu cầu
+                // (Nó bắt buộc phải trả về: uploaded = 1 và url = đường dẫn ảnh)
+                return Json(new
+                {
+                    uploaded = 1,
+                    fileName = tenFile,
+                    url = "/Content/Assets/Product_Images/" + tenFile
+                });
+            }
+
+            // Nếu lỗi
+            return Json(new { uploaded = 0, error = new { message = "Lỗi tải ảnh lên server!" } });
         }
     }
 }

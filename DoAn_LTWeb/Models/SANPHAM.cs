@@ -1,6 +1,7 @@
 namespace DoAn_LTWeb.Models
 {
     using System;
+    using System.Web.Mvc;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -29,6 +30,7 @@ namespace DoAn_LTWeb.Models
 
         public int? MATHUONGHIEU { get; set; }
 
+        [AllowHtml]
         public string MOTA { get; set; }
 
         public double? DANHGIA { get; set; }
@@ -48,5 +50,6 @@ namespace DoAn_LTWeb.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SANPHAM_BIENTHE> SANPHAM_BIENTHE { get; set; }
+        public virtual ICollection<THONGSO_KYTHUAT> THONGSO_KYTHUATs { get; set; }
     }
 }

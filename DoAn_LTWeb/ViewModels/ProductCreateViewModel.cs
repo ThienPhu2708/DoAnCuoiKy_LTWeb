@@ -15,7 +15,6 @@ namespace DoAn_LTWeb.ViewModels
         public SANPHAM_BIENTHE BienThe { get; set; }
         public HttpPostedFileBase AnhBiaFile { get; set; }
 
-
         //THÊM LIST_ẢNH SẢN PHẨM
         public IEnumerable<HttpPostedFileBase> GalleryFiles { get; set; }
 

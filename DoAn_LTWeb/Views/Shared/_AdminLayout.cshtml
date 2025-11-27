@@ -112,11 +112,18 @@
 
         function toggleSidebar() {
             sidebar.classList.toggle('-translate-x-full');
-            sidebarOverlay.classList.toggle('hidden');
+            if (sidebarOverlay) {
+                sidebarOverlay.classList.toggle('hidden');
+            }
         }
 
-        menuToggle.addEventListener('click', toggleSidebar);
-        sidebarOverlay.addEventListener('click', toggleSidebar);
+        if (menuToggle) { // Nếu có nút menu thì mới bắt sự kiện
+            menuToggle.addEventListener('click', toggleSidebar);
+        }
+
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+        }
     </script>
 
     @RenderSection("scripts", required: false)

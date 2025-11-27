@@ -84,6 +84,7 @@ namespace DoAn_LTWeb.Controllers
             var sanpham = db.SANPHAMs.Include(s => s.THUONGHIEU)
                                      .Include(s => s.LIST_ANHSP)
                                      .Include(s => s.SANPHAM_BIENTHE)
+                                     .Include("THONGSO_KYTHUATs")
                                      .Include(s => s.LOAISANPHAM.LOAISANPHAM2)
                                      .FirstOrDefault(s => s.MASP == id);
 

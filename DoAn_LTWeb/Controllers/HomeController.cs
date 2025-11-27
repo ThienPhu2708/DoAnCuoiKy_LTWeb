@@ -84,26 +84,11 @@ namespace DoAn_LTWeb.Controllers
             return PartialView("_SearchSuggestion", products);
         }
 
-
-
-
-
-
         //About
         public ActionResult About()
         {
             return View();
         }
-
-
-
-
-
-
-
-
-
-
 
     }
 }
