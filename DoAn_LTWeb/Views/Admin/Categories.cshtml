@@ -38,61 +38,81 @@
                 Lọc
             </button>
         }
-        <!-- Bảng danh sách loại sản phẩm -->
-        <div class="overflow-x-auto rounded-lg border border-gray-200">
-            <table class="min-w-full divide-y divide-gray-200">
-                <thead class="bg-gray-50">
-                    <tr>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            @Html.DisplayNameFor(model => model.TENLOAI)
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            @Html.DisplayNameFor(model => model.ANHDAIDIEN)
-                        </th>
-                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            @Html.DisplayNameFor(model => model.MALOAICHA)
-                        </th>
-                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Hành động
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody class="bg-white divide-y divide-gray-200">
-                    @foreach (var item in Model)
-                    {
+        @*Thông báo không tìm thấy loại sản phẩm nao*@
+        @if (ViewBag.Message != null)
+        {
+            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4 rounded shadow-sm" role="alert">
+                <div class="flex">
+                    <div class="py-1"><i class="fas fa-exclamation-circle mr-2"></i></div>
+                    <div>
+                        <p class="font-bold">Thông báo</p>
+                        <p>@ViewBag.Message</p>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <!-- Bảng danh sách loại sản phẩm -->
+            <div class="overflow-x-auto rounded-lg border border-gray-200">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                         <tr>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                @Html.DisplayFor(modelItem => item.TENLOAI)
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                <!-- Hiển thị ảnh đại diện -->
-                                @if (!string.IsNullOrEmpty(item.ANHDAIDIEN))
-                                {
-                                    <img src="@Url.Content("~/Content/Assets/Product_Images/" + item.ANHDAIDIEN)" alt="@item.TENLOAI" class="h-12 w-12 object-cover rounded-md shadow" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
-                                    <span class="text-gray-400 text-xs" style="display:none;">Lỗi ảnh</span>
-                                }
-                                else
-                                {
-                                    <span class="text-gray-400 text-xs">Không có ảnh</span>
-                                }
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-                                @(item.LOAISANPHAM2?.TENLOAI ?? "(Không có)")
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
-                                <a href="@Url.Action("EditCategory", "Admin", new { id = item.MALOAI })" class="text-indigo-600 hover:text-indigo-900 mx-1 p-1 rounded-md" title="Sửa">
-                                    <i class="fas fa-edit fa-fw"></i>
-                                </a>
-                                <a href="@Url.Action("DeleteCategory", "Admin", new { id = item.MALOAI })" class="text-red-600 hover:text-red-900 mx-1 p-1 rounded-md" onclick="return confirm('Bạn có chắc chắn muốn xóa loại sản phẩm này?');" title="Xóa">
-                                    <i class="fas fa-trash-alt fa-fw"></i>
-                                </a>
-                            </td>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.MALOAI)
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.TENLOAI)
+                            </th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                @Html.DisplayNameFor(model => model.ANHDAIDIEN)
+                            </th>
+                            <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Hành động
+                            </th>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    @Html.DisplayFor(modelItem => item.MALOAI)
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                                    @Html.DisplayFor(modelItem => item.TENLOAI)
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                                    <!-- Hiển thị ảnh đại diện -->
+                                    @if (!string.IsNullOrEmpty(item.ANHDAIDIEN))
+                                    {
+                                        <img src="@Url.Content("~/Content/Assets/Product_Images/" + item.ANHDAIDIEN)" alt="@item.TENLOAI" class="h-12 w-12 object-cover rounded-md shadow" onerror="this.style.display='none'; this.nextElementSibling.style.display='inline';" />
+                                        <span class="text-gray-400 text-xs" style="display:none;">Lỗi ảnh</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-gray-400 text-xs">Không có ảnh</span>
+                                    }
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
+                                    <a href="@Url.Action("EditCategory", "Admin", new { id = item.MALOAI })" class="text-indigo-600 hover:text-indigo-900 mx-1 p-1 rounded-md" title="Sửa">
+                                        <i class="fas fa-edit fa-fw"></i>
+                                    </a>
+                                    <a href="@Url.Action("DeleteCategory", "Admin", new { id = item.MALOAI })" class="text-red-600 hover:text-red-900 mx-1 p-1 rounded-md" onclick="return confirm('Bạn có chắc chắn muốn xóa loại sản phẩm này?');" title="Xóa">
+                                        <i class="fas fa-trash-alt fa-fw"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+
+
+
+
 
     </div>
 </section>
