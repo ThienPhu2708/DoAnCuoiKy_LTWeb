@@ -11,6 +11,7 @@ using DoAn_LTWeb.ViewModels;
 using System.Data.SqlClient;
 namespace DoAn_LTWeb.Controllers
 {
+    [AdminAuthorize] //form login bắt buộc 
     public class AdminController : Controller
     {
         INSTRUMENT db = new INSTRUMENT();
@@ -282,7 +283,10 @@ namespace DoAn_LTWeb.Controllers
         public ActionResult Categories(string searchQuery, int? parentCategoryId)
         {
             var lOAISANPHAMs = db.LOAISANPHAMs.Include(l => l.LOAISANPHAM2).AsQueryable();
-
+            if (!String.IsNullOrEmpty(searchQuery))
+            {
+                lOAISANPHAMs = lOAISANPHAMs.Where(l => l.TENLOAI.ToLower().Contains(searchQuery)&& l.MALOAICHA !=null);
+            }
             if (parentCategoryId.HasValue)
             {
                 // Nếu có ID (đang xem Cha), thì HIỆN CON
@@ -294,9 +298,17 @@ namespace DoAn_LTWeb.Controllers
             }
             else
             {
-                // Nếu KHÔNG có ID (mặc định), thì CHỈ HIỆN CHA
-                lOAISANPHAMs = lOAISANPHAMs.Where(l => l.MALOAICHA == null);
-                ViewBag.Title = "Quản lý Loại Sản Phẩm (Cha)";
+                if (String.IsNullOrEmpty(searchQuery))
+                {
+                    // Chỉ khi KHÔNG tìm kiếm thì mới mặc định hiện Cha
+                    lOAISANPHAMs = lOAISANPHAMs.Where(l => l.MALOAICHA == null);
+                }
+            }
+
+            var resultList = lOAISANPHAMs.OrderBy(l => l.TENLOAI).ToList();
+            if (resultList.Count == 0)
+            {
+                ViewBag.Message = "Không tìm thấy loại sản phẩm nào phù hợp.";
             }
 
             ViewBag.ParentCategoryList = new SelectList(
@@ -307,7 +319,7 @@ namespace DoAn_LTWeb.Controllers
 
             ViewBag.CurrentSearch = searchQuery;
 
-            return View(lOAISANPHAMs.OrderBy(l => l.TENLOAI).ToList());
+            return View(resultList);
         }
 
         public ActionResult CreateCategory()
