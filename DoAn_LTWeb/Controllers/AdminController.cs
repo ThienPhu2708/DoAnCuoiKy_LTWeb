@@ -81,9 +81,10 @@ namespace DoAn_LTWeb.Controllers
         }
 
 
-          [HttpPost]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateProduct(ProductCreateViewModel viewModel) 
+        [ValidateInput(false)]
+        public ActionResult CreateProduct(ProductCreateViewModel viewModel)
         {
             ViewBag.Title = "Thêm sản phẩm mới";
             ViewBag.MALOAI = new SelectList(db.LOAISANPHAMs.Where(l => l.MALOAICHA != null), "MALOAI", "TENLOAI", viewModel.SanPham.MALOAI);
@@ -91,7 +92,7 @@ namespace DoAn_LTWeb.Controllers
 
             try
             {
-                string tenFileAnh = null; 
+                string tenFileAnh = null;
                 if (viewModel.AnhBiaFile != null && viewModel.AnhBiaFile.ContentLength > 0)
                 {
                     tenFileAnh = Path.GetFileName(viewModel.AnhBiaFile.FileName);
@@ -101,129 +102,22 @@ namespace DoAn_LTWeb.Controllers
                     viewModel.AnhBiaFile.SaveAs(pathLuuFile);
                 }
                 //GỌI PROCEDURE THÊM SẢN PHẨM
-                        db.Database.ExecuteSqlCommand(
-                    "EXEC sp_THEMSANPHAM @MASP, @TENSP, @MALOAI, @MATHUONGHIEU, @MOTA, @ANHBIA, @TENBIENTHE, @GIAGOC, @GIABAN, @SOLUONGTON",
-                    new SqlParameter("@MASP", viewModel.SanPham.MASP),
-                    new SqlParameter("@TENSP", viewModel.SanPham.TENSP),
-                    new SqlParameter("@MALOAI", (object)viewModel.SanPham.MALOAI ?? DBNull.Value),
-                    new SqlParameter("@MATHUONGHIEU", (object)viewModel.SanPham.MATHUONGHIEU ?? DBNull.Value),
-                    new SqlParameter("@MOTA", (object)viewModel.SanPham.MOTA ?? DBNull.Value),
-                    new SqlParameter("@ANHBIA", (object)tenFileAnh ?? DBNull.Value),
-                    new SqlParameter("@TENBIENTHE", viewModel.BienThe.TENBIENTHE),
-                    new SqlParameter("@GIAGOC", viewModel.BienThe.GIAGOC),
-                    new SqlParameter("@GIABAN", viewModel.BienThe.GIABAN),
-                    new SqlParameter("@SOLUONGTON", viewModel.BienThe.SOLUONGTON)
-                );
+                db.Database.ExecuteSqlCommand(
+            "EXEC sp_THEMSANPHAM @MASP, @TENSP, @MALOAI, @MATHUONGHIEU, @MOTA, @ANHBIA, @TENBIENTHE, @GIAGOC, @GIABAN, @SOLUONGTON",
+            new SqlParameter("@MASP", viewModel.SanPham.MASP),
+            new SqlParameter("@TENSP", viewModel.SanPham.TENSP),
+            new SqlParameter("@MALOAI", (object)viewModel.SanPham.MALOAI ?? DBNull.Value),
+            new SqlParameter("@MATHUONGHIEU", (object)viewModel.SanPham.MATHUONGHIEU ?? DBNull.Value),
+            new SqlParameter("@MOTA", (object)viewModel.SanPham.MOTA ?? DBNull.Value),
+            new SqlParameter("@ANHBIA", (object)tenFileAnh ?? DBNull.Value),
+            new SqlParameter("@TENBIENTHE", viewModel.BienThe.TENBIENTHE),
+            new SqlParameter("@GIAGOC", viewModel.BienThe.GIAGOC),
+            new SqlParameter("@GIABAN", viewModel.BienThe.GIABAN),
+            new SqlParameter("@SOLUONGTON", viewModel.BienThe.SOLUONGTON)
+        );
 
 
                 //GỌI PROCEDURE CHO LIST_ANHSP
-                if (viewModel.GalleryFiles != null && viewModel.GalleryFiles.Any())
-                {
-                    foreach (var file in viewModel.GalleryFiles)
-                    {
-                        if (file != null && file.ContentLength > 0)
-                        {
-                            // a. Lưu file ảnh gallery
-                            string tenFileGallery = Path.GetFileName(file.FileName);
-                            tenFileGallery = Guid.NewGuid().ToString().Substring(0, 8) + "_" + tenFileGallery;
-                            string pathLuuFileGallery = Path.Combine(Server.MapPath("~/Content/Assets/Product_Images"), tenFileGallery);
-                            file.SaveAs(pathLuuFileGallery);
-
-                            // b. GỌI SP_THEM_ANHSP cho từng ảnh
-                            db.Database.ExecuteSqlCommand(
-                                "EXEC SP_THEM_ANHSP @MASP, @URL_ANH",
-                                new SqlParameter("@MASP", viewModel.SanPham.MASP), 
-                                new SqlParameter("@URL_ANH", tenFileGallery)
-                            );
-                        }
-                    }
-                }
-                return RedirectToAction("Products");
-            }
-            catch (Exception ex)
-            {
-                ModelState.AddModelError("", "Đã xảy ra lỗi: " + ex.Message);
-            }
-            return View(viewModel);
-        }
-
-
-        public ActionResult EditProduct(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            SANPHAM product = db.SANPHAMs.Find(id);
-
-            if (product == null)
-            {   
-                return HttpNotFound();
-            }
-
-            SANPHAM_BIENTHE variant = db.SANPHAM_BIENTHE.FirstOrDefault(v => v.MASP == id);
-            if (variant == null)
-            {
-                // (Xử lý nếu Vỏ có mà Ruột không có -> nên tạo 1 Ruột rỗng)
-                variant = new SANPHAM_BIENTHE { MASP = id };
-            }
-
-            var viewModel = new ProductCreateViewModel
-            {
-                SanPham = product,
-                BienThe = variant
-            };
-
-
-            ViewBag.MALOAI = new SelectList(db.LOAISANPHAMs.Where(l => l.MALOAICHA != null), "MALOAI", "TENLOAI", product.MALOAI);
-            ViewBag.MATHUONGHIEU = new SelectList(db.THUONGHIEUs, "MATHUONGHIEU", "TENTHUONGHIEU", product.MATHUONGHIEU);
-
-            ViewBag.Title = "Chỉnh sửa sản phẩm";
-            return View(viewModel);
-        }
-
-
-
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult EditProduct(ProductCreateViewModel viewModel)
-        {
-            ViewBag.MALOAI = new SelectList(db.LOAISANPHAMs.Where(l => l.MALOAICHA != null), "MALOAI", "TENLOAI", viewModel.SanPham.MALOAI);
-            ViewBag.MATHUONGHIEU = new SelectList(db.THUONGHIEUs, "MATHUONGHIEU", "TENTHUONGHIEU", viewModel.SanPham.MATHUONGHIEU);
-
-
-            if (!ModelState.IsValid)
-            {
-                return View(viewModel);
-            }
-
-            string tenFileAnh = viewModel.SanPham.ANHBIA;
-            try
-            {
-                if (!ModelState.IsValid)
-                {
-                    return View(viewModel);
-                }
-
-                db.Database.ExecuteSqlCommand(
-                    "EXEC SP_SUASANPHAM @MASP, @MABIENTHE, @TENSP, @MALOAI, @MATHUONGHIEU, @MOTA, @ANHBIA, @TENBIENTHE, @GIAGOC, @GIABAN, @SOLUONGTON",
-                    new SqlParameter("@MASP", viewModel.SanPham.MASP), // Key Vỏ
-                    new SqlParameter("@MABIENTHE", viewModel.BienThe.MABIENTHE), // Key Ruột
-
-                    new SqlParameter("@TENSP", viewModel.SanPham.TENSP),
-                    new SqlParameter("@MALOAI", (object)viewModel.SanPham.MALOAI ?? DBNull.Value),
-                    new SqlParameter("@MATHUONGHIEU", (object)viewModel.SanPham.MATHUONGHIEU ?? DBNull.Value),
-                    new SqlParameter("@MOTA", (object)viewModel.SanPham.MOTA ?? DBNull.Value),
-                    new SqlParameter("@ANHBIA", (object)tenFileAnh ?? DBNull.Value),
-
-                    new SqlParameter("@TENBIENTHE", viewModel.BienThe.TENBIENTHE),
-                    new SqlParameter("@GIAGOC", viewModel.BienThe.GIAGOC),
-                    new SqlParameter("@GIABAN", viewModel.BienThe.GIABAN),
-                    new SqlParameter("@SOLUONGTON", viewModel.BienThe.SOLUONGTON)
-                         );
-
                 if (viewModel.GalleryFiles != null && viewModel.GalleryFiles.Any())
                 {
                     foreach (var file in viewModel.GalleryFiles)
@@ -245,16 +139,206 @@ namespace DoAn_LTWeb.Controllers
                         }
                     }
                 }
-
-               return RedirectToAction("Products");
+                return RedirectToAction("Products");
             }
-
             catch (Exception ex)
             {
-                ModelState.AddModelError("", "Lỗi CSDL: " + ex.Message);
+                ModelState.AddModelError("", "Đã xảy ra lỗi: " + ex.Message);
             }
             return View(viewModel);
         }
+
+        public ActionResult EditProduct(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Tìm sản phẩm
+            SANPHAM product = db.SANPHAMs.Find(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Lấy danh sách thông số kỹ thuật cũ để hiển thị lên bảng
+            ViewBag.ListThongSo = db.THONGSO_KYTHUATs
+                                    .Where(t => t.MASP == id)
+                                    .OrderBy(t => t.NHOM_THONGSO) // Sắp xếp theo nhóm 
+                                    .ToList();
+
+            // Tìm biến thể (Ruột)
+            SANPHAM_BIENTHE variant = db.SANPHAM_BIENTHE.FirstOrDefault(v => v.MASP == id);
+            if (variant == null)
+            {
+                // Nếu chưa có ruột thì tạo ruột rỗng để không bị lỗi null bên View
+                variant = new SANPHAM_BIENTHE { MASP = id };
+            }
+
+            // Đóng gói vào ViewModel
+            var viewModel = new ProductCreateViewModel
+            {
+                SanPham = product,
+                BienThe = variant
+            };
+
+            // Tạo Dropdown cho Loại và Thương hiệu
+            ViewBag.MALOAI = new SelectList(db.LOAISANPHAMs.Where(l => l.MALOAICHA != null), "MALOAI", "TENLOAI", product.MALOAI);
+            ViewBag.MATHUONGHIEU = new SelectList(db.THUONGHIEUs, "MATHUONGHIEU", "TENTHUONGHIEU", product.MATHUONGHIEU);
+
+            ViewBag.Title = "Chỉnh sửa sản phẩm";
+            return View(viewModel);
+        }
+
+        //MOI//
+        [HttpPost]
+        public JsonResult QuickAddBrand(string tenThuongHieu)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(tenThuongHieu))
+                {
+                    // 1. Kiểm tra xem có trùng tên chưa
+                    var exist = db.THUONGHIEUs.FirstOrDefault(t => t.TENTHUONGHIEU == tenThuongHieu);
+                    if (exist != null)
+                    {
+                        return Json(new { success = false, message = "Thương hiệu này đã có rồi!" });
+                    }
+
+                    // 2. Tạo mới (Chỉ cần tên, mấy cái khác để null hoặc mặc định)
+                    var brand = new THUONGHIEU();
+                    brand.TENTHUONGHIEU = tenThuongHieu;
+                    // brand.ANH = ... (Nếu bắt buộc ảnh thì phải gán ảnh mặc định ở đây)
+
+                    db.THUONGHIEUs.Add(brand);
+                    db.SaveChanges();
+
+                    // 3. Trả về ID và Tên để Dropdown tự chọn
+                    return Json(new { success = true, id = brand.MATHUONGHIEU, name = brand.TENTHUONGHIEU });
+                }
+                return Json(new { success = false, message = "Tên không được để trống" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)] //  Cho phép lưu mã HTML từ CKEditor
+        public ActionResult EditProduct(ProductCreateViewModel viewModel, HttpPostedFileBase fileUpload, string[] TS_Nhom, string[] TS_Ten, string[] TS_Giatri)
+        {
+            // Load lại Dropdown phòng khi lỗi phải trả về View
+            ViewBag.MALOAI = new SelectList(db.LOAISANPHAMs.Where(l => l.MALOAICHA != null), "MALOAI", "TENLOAI", viewModel.SanPham.MALOAI);
+            ViewBag.MATHUONGHIEU = new SelectList(db.THUONGHIEUs, "MATHUONGHIEU", "TENTHUONGHIEU", viewModel.SanPham.MATHUONGHIEU);
+
+            // Kiểm tra dữ liệu đầu vào
+            if (!ModelState.IsValid) { return View(viewModel); }
+
+            // 2. LOGIC XỬ LÝ ẢNH BÌA (MỚI THÊM)
+            string tenFileAnh = viewModel.SanPham.ANHBIA; // Mặc định lấy ảnh cũ
+
+            // Kiểm tra: Nếu có chọn ảnh mới (fileUpload không null)
+            if (fileUpload != null && fileUpload.ContentLength > 0)
+            {
+                // a. Tạo tên file mới
+                string _FileName = Path.GetFileName(fileUpload.FileName);
+                _FileName = Guid.NewGuid().ToString().Substring(0, 8) + "_" + _FileName;
+
+                // b. Lưu file vào server
+                string _path = Path.Combine(Server.MapPath("~/Content/Assets/Product_Images"), _FileName);
+                fileUpload.SaveAs(_path);
+
+                // c. Cập nhật tên file mới vào biến để tí nữa lưu xuống SQL
+                tenFileAnh = _FileName;
+            }
+
+            try
+            {
+                // XỬ LÝ LƯU SẢN PHẨM CHÍNH (GỌI STORED PROCEDURE)
+                db.Database.ExecuteSqlCommand(
+                    "EXEC SP_SUASANPHAM @MASP, @MABIENTHE, @TENSP, @MALOAI, @MATHUONGHIEU, @MOTA, @ANHBIA, @TENBIENTHE, @GIAGOC, @GIABAN, @SOLUONGTON",
+                    new SqlParameter("@MASP", viewModel.SanPham.MASP),
+                    new SqlParameter("@MABIENTHE", viewModel.BienThe.MABIENTHE),
+
+                    new SqlParameter("@TENSP", viewModel.SanPham.TENSP),
+                    new SqlParameter("@MALOAI", (object)viewModel.SanPham.MALOAI ?? DBNull.Value),
+                    new SqlParameter("@MATHUONGHIEU", (object)viewModel.SanPham.MATHUONGHIEU ?? DBNull.Value),
+                    new SqlParameter("@MOTA", (object)viewModel.SanPham.MOTA ?? DBNull.Value),
+                    new SqlParameter("@ANHBIA", (object)tenFileAnh ?? DBNull.Value),
+
+                    // Xử lý Null cho Biến thể (Quan trọng)
+                    new SqlParameter("@TENBIENTHE", (object)viewModel.BienThe.TENBIENTHE ?? DBNull.Value),
+                    new SqlParameter("@GIAGOC", (object)viewModel.BienThe.GIAGOC ?? 0),
+                    new SqlParameter("@GIABAN", (object)viewModel.BienThe.GIABAN ?? 0),
+                    new SqlParameter("@SOLUONGTON", (object)viewModel.BienThe.SOLUONGTON ?? 0)
+                );
+
+                // XỬ LÝ ẢNH GALLERY (NẾU CÓ UP MỚI)
+                if (viewModel.GalleryFiles != null && viewModel.GalleryFiles.Any())
+                {
+                    foreach (var file in viewModel.GalleryFiles)
+                    {
+                        if (file != null && file.ContentLength > 0)
+                        {
+                            string tenFileGallery = Path.GetFileName(file.FileName);
+                            tenFileGallery = Guid.NewGuid().ToString().Substring(0, 8) + "_" + tenFileGallery;
+                            string pathLuuFileGallery = Path.Combine(Server.MapPath("~/Content/Assets/Product_Images"), tenFileGallery);
+                            file.SaveAs(pathLuuFileGallery);
+
+                            db.Database.ExecuteSqlCommand(
+                                "EXEC SP_THEM_ANHSP @MASP, @URL_ANH",
+                                new SqlParameter("@MASP", viewModel.SanPham.MASP),
+                                new SqlParameter("@URL_ANH", tenFileGallery)
+                            );
+                        }
+                    }
+                }
+
+                // XỬ LÝ LƯU THÔNG SỐ KỸ THUẬT (MỚI THÊM)
+                // Bước 1: Xóa sạch thông số cũ của SP này đi
+                var oldSpecs = db.THONGSO_KYTHUATs.Where(t => t.MASP == viewModel.SanPham.MASP);
+                db.THONGSO_KYTHUATs.RemoveRange(oldSpecs);
+                db.SaveChanges();
+
+                // Bước 2: Thêm lại danh sách mới từ Mảng (Array) gửi lên
+                if (TS_Ten != null && TS_Giatri != null)
+                {
+                    for (int i = 0; i < TS_Ten.Length; i++)
+                    {
+                        // Chỉ lưu những dòng có dữ liệu (Tên và Giá trị không rỗng)
+                        if (!string.IsNullOrEmpty(TS_Ten[i]) && !string.IsNullOrEmpty(TS_Giatri[i]))
+                        {
+                            var spec = new THONGSO_KYTHUAT();
+                            spec.MASP = viewModel.SanPham.MASP;
+                            // Lấy nhóm tương ứng (nếu có)
+                            spec.NHOM_THONGSO = (TS_Nhom != null && TS_Nhom.Length > i) ? TS_Nhom[i] : null;
+                            spec.TEN_THONGSO = TS_Ten[i];
+                            spec.GIATRI = TS_Giatri[i];
+
+                            db.THONGSO_KYTHUATs.Add(spec);
+                        }
+                    }
+                    db.SaveChanges(); // Lưu đợt 2 (Lưu thông số)
+                }
+                TempData["ThongBao"] = "Đã lưu thay đổi thành công!";
+                // LƯU XONG QUAY LẠI TRANG EDIT ĐỂ SỬA TIẾP (KHÔNG VĂNG RA LIST)
+                return RedirectToAction("EditProduct", new { id = viewModel.SanPham.MASP });
+            }
+            catch (Exception ex)
+            {
+                // Nếu lỗi thì hiện thông báo đỏ lên Form
+                ModelState.AddModelError("", "Lỗi CSDL: " + ex.Message);
+            }
+
+            // Nếu lỗi thì trả về View cũ kèm dữ liệu để người dùng sửa lại
+            return View(viewModel);
+        }
+
+
+
 
         public ActionResult DeleteProduct(string id)
         {
@@ -280,13 +364,11 @@ namespace DoAn_LTWeb.Controllers
             return RedirectToAction("Products");
         }
 
+
         public ActionResult Categories(string searchQuery, int? parentCategoryId)
         {
             var lOAISANPHAMs = db.LOAISANPHAMs.Include(l => l.LOAISANPHAM2).AsQueryable();
-            if (!String.IsNullOrEmpty(searchQuery))
-            {
-                lOAISANPHAMs = lOAISANPHAMs.Where(l => l.TENLOAI.ToLower().Contains(searchQuery)&& l.MALOAICHA !=null);
-            }
+
             if (parentCategoryId.HasValue)
             {
                 // Nếu có ID (đang xem Cha), thì HIỆN CON
@@ -298,29 +380,23 @@ namespace DoAn_LTWeb.Controllers
             }
             else
             {
-                if (String.IsNullOrEmpty(searchQuery))
-                {
-                    // Chỉ khi KHÔNG tìm kiếm thì mới mặc định hiện Cha
-                    lOAISANPHAMs = lOAISANPHAMs.Where(l => l.MALOAICHA == null);
-                }
-            }
-
-            var resultList = lOAISANPHAMs.OrderBy(l => l.TENLOAI).ToList();
-            if (resultList.Count == 0)
-            {
-                ViewBag.Message = "Không tìm thấy loại sản phẩm nào phù hợp.";
+                // Nếu KHÔNG có ID (mặc định), thì CHỈ HIỆN CHA
+                lOAISANPHAMs = lOAISANPHAMs.Where(l => l.MALOAICHA == null);
+                ViewBag.Title = "Quản lý Loại Sản Phẩm (Cha)";
             }
 
             ViewBag.ParentCategoryList = new SelectList(
                     db.LOAISANPHAMs.Where(l => l.MALOAICHA == null),
                     "MALOAI", "TENLOAI",
-                    parentCategoryId 
+                    parentCategoryId
                 );
 
             ViewBag.CurrentSearch = searchQuery;
 
-            return View(resultList);
+            return View(lOAISANPHAMs.OrderBy(l => l.TENLOAI).ToList());
         }
+
+
 
         public ActionResult CreateCategory()
         {
@@ -447,25 +523,29 @@ namespace DoAn_LTWeb.Controllers
                 new SelectListItem { Text = "Đã hoàn thành", Value = "Đã hoàn thành" },
                 new SelectListItem { Text = "Đã hủy", Value = "Đã hủy" }
             };
-
             return new SelectList(statusList, "Value", "Text", selectedValue);
         }
+
+
 
         public ActionResult Orders(string searchQuery, string status)
         {
             ViewBag.Title = "Quản lý Đơn Hàng";
             var dONDATHANGs = db.DONDATHANGs.Include(d => d.KHACHHANG).AsQueryable();
+
             if (!String.IsNullOrEmpty(searchQuery))
             {
+                searchQuery = searchQuery.Trim();
                 int searchId = 0;
-                int.TryParse(searchQuery, out searchId);
+                bool isNumber = int.TryParse(searchQuery, out searchId);
 
                 dONDATHANGs = dONDATHANGs.Where(d =>
-                    (d.MAKH.HasValue && d.MAKH == searchId) ||
+                    (isNumber && d.MADON == searchId) ||
+                    (d.MAKH.HasValue && isNumber && d.MAKH == searchId) ||
                     d.TENNGUOINHAN.Contains(searchQuery) ||
                     d.SDT_GIAO.Contains(searchQuery) ||
                     d.EMAIL.Contains(searchQuery) ||
-                    d.KHACHHANG.HOTEN.Contains(searchQuery)
+                    (d.KHACHHANG != null && d.KHACHHANG.HOTEN.Contains(searchQuery))
                 );
             }
 
@@ -474,75 +554,123 @@ namespace DoAn_LTWeb.Controllers
                 dONDATHANGs = dONDATHANGs.Where(d => d.TRANGTHAIDON == status);
             }
 
+            // Thông báo khi lọc không có trạng thái
+            if (!dONDATHANGs.Any() && !String.IsNullOrEmpty(status))
+            {
+                ViewBag.NotifyMessage = "Không tìm thấy đơn hàng nào với trạng thái: " + status;
+            }
+
             ViewBag.StatusList = GetOrderStatusList(status);
-
             ViewBag.CurrentSearch = searchQuery;
+            ViewBag.CurrentStatus = status;
 
-            return View(dONDATHANGs.ToList());
+            return View(dONDATHANGs.OrderByDescending(d => d.NGAYDAT).ToList());
         }
 
         public ActionResult OrderDetails(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
 
             DONDATHANG donDatHang = db.DONDATHANGs
                 .Include(d => d.KHACHHANG)
                 .Include(d => d.CHITIETDONDATHANGs.Select(ct => ct.SANPHAM_BIENTHE.SANPHAM))
                 .FirstOrDefault(d => d.MADON == id);
 
-            if (donDatHang == null)
-            {
-                return HttpNotFound();
-            }
+            if (donDatHang == null) return HttpNotFound();
 
             ViewBag.Title = "Chi tiết Đơn hàng";
             return View(donDatHang);
         }
 
+
         public ActionResult EditOrder(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             DONDATHANG donDatHang = db.DONDATHANGs.Find(id);
-            if (donDatHang == null)
-            {
-                return HttpNotFound();
-            }
+            if (donDatHang == null) return HttpNotFound();
 
             ViewBag.Title = "Cập nhật Đơn hàng";
             ViewBag.TRANGTHAIDON = GetOrderStatusList(donDatHang.TRANGTHAIDON);
 
-            ViewBag.MAKH = new SelectList(db.KHACHHANGs, "MAKH", "HOTEN", donDatHang.MAKH);
+            ViewBag.MAKH = new SelectList(
+                db.KHACHHANGs.Where(k => k.MAVAITRO == 2),
+                "MAKH", "HOTEN", donDatHang.MAKH
+            );
 
             return View(donDatHang);
         }
 
-        //---  CẬP NHẬT ĐƠN HÀNG  ---
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditOrder([Bind(Include = "MADON,MAKH,TRANGTHAIDON,PHUONGTHUCTHANHTOAN,MATHANHTOAN,DIACHI_GIAO,TENNGUOINHAN,SDT_GIAO,EMAIL")] DONDATHANG donDatHang)
         {
-
             if (ModelState.IsValid)
             {
+                // Lấy trạng thái cũ và dữ liệu cũ để so sánh
+                var oldOrder = db.DONDATHANGs.AsNoTracking().FirstOrDefault(d => d.MADON == donDatHang.MADON);
+
+                // [UPDATE] Cập nhật thông tin người nhận nếu thay đổi Khách hàng
+                if (donDatHang.MAKH != oldOrder.MAKH && donDatHang.MAKH.HasValue)
+                {
+                    var khachHangMoi = db.KHACHHANGs.Find(donDatHang.MAKH);
+                    if (khachHangMoi != null)
+                    {
+                        donDatHang.TENNGUOINHAN = khachHangMoi.HOTEN;
+                        donDatHang.SDT_GIAO = khachHangMoi.SDT;
+                        donDatHang.EMAIL = khachHangMoi.EMAIL;
+                        if (!string.IsNullOrEmpty(khachHangMoi.DIACHI_MACDINH))
+                        {
+                            donDatHang.DIACHI_GIAO = khachHangMoi.DIACHI_MACDINH;
+                        }
+                    }
+                }
+
                 db.Entry(donDatHang).State = EntityState.Modified;
                 db.Entry(donDatHang).Property(x => x.TONGTIEN).IsModified = false;
                 db.Entry(donDatHang).Property(x => x.NGAYDAT).IsModified = false;
+
+                if (donDatHang.TRANGTHAIDON == "Đã hủy" && oldOrder.TRANGTHAIDON != "Đã hủy")
+                {
+                    var chiTietDon = db.CHITIETDONDATHANGs.Where(ct => ct.MADON == donDatHang.MADON).ToList();
+                    foreach (var item in chiTietDon)
+                    {
+                        var bienThe = db.SANPHAM_BIENTHE.Find(item.MABIENTHE);
+                        if (bienThe != null)
+                        {
+                            bienThe.SOLUONGTON += item.SOLUONG;
+                            db.Entry(bienThe).State = EntityState.Modified;
+                        }
+                    }
+                }
+                else if (oldOrder.TRANGTHAIDON == "Đã hủy" && donDatHang.TRANGTHAIDON != "Đã hủy")
+                {
+                    var chiTietDon = db.CHITIETDONDATHANGs.Where(ct => ct.MADON == donDatHang.MADON).ToList();
+                    foreach (var item in chiTietDon)
+                    {
+                        var bienThe = db.SANPHAM_BIENTHE.Find(item.MABIENTHE);
+                        if (bienThe != null)
+                        {
+                            bienThe.SOLUONGTON -= item.SOLUONG;
+                            db.Entry(bienThe).State = EntityState.Modified;
+                        }
+                    }
+                }
 
                 db.SaveChanges();
                 return RedirectToAction("Orders");
             }
 
             ViewBag.TRANGTHAIDON = GetOrderStatusList(donDatHang.TRANGTHAIDON);
-            ViewBag.MAKH = new SelectList(db.KHACHHANGs, "MAKH", "HOTEN", donDatHang.MAKH);
+            ViewBag.MAKH = new SelectList(db.KHACHHANGs.Where(k => k.MAVAITRO == 2), "MAKH", "HOTEN", donDatHang.MAKH);
 
             return View(donDatHang);
         }
+
+
+
+
+        //QUẢN LÝ KHÁCH HÀNG
 
         public ActionResult Customers(string searchQuery, int? roleId)
         {
@@ -606,21 +734,32 @@ namespace DoAn_LTWeb.Controllers
             return View(khachHang);
         }
 
-        //--- HỈNH SỬA KHÁCH HÀNG  ---
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditCustomer([Bind(Include = "MAKH,HOTEN,SDT,EMAIL,DIACHI_MACDINH,MAVAITRO")] KHACHHANG khachHang)
+        public ActionResult EditCustomer([Bind(Include = "MAKH,HOTEN,SDT,EMAIL,DIACHI_MACDINH")] KHACHHANG khachHang)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(khachHang).State = EntityState.Modified;
-                db.SaveChanges();
+                var existingCustomer = db.KHACHHANGs.Find(khachHang.MAKH);
+                if (existingCustomer != null)
+                {
+                    existingCustomer.HOTEN = khachHang.HOTEN;
+                    existingCustomer.SDT = khachHang.SDT;
+                    existingCustomer.EMAIL = khachHang.EMAIL;
+                    existingCustomer.DIACHI_MACDINH = khachHang.DIACHI_MACDINH;
+
+                    db.SaveChanges();
+                }
                 return RedirectToAction("Customers");
             }
 
-            ViewBag.MAVAITRO = new SelectList(db.VAITROes, "MAVAITRO", "TENVAITRO", khachHang.MAVAITRO);
+            ViewBag.MAVAITRO = new SelectList(db.VAITROes, "MAVAITRO", "TENVAITRO", 1);
             return View(khachHang);
         }
+
+
+
 
 
         public ActionResult Statistics()
@@ -736,5 +875,95 @@ namespace DoAn_LTWeb.Controllers
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ThemThongSo(string masp, string nhom, string ten, string giatri)
+        {
+            if (!string.IsNullOrEmpty(masp) && !string.IsNullOrEmpty(ten))
+            {
+                var ts = new THONGSO_KYTHUAT();
+                ts.MASP = masp;
+                ts.NHOM_THONGSO = nhom;
+                ts.TEN_THONGSO = ten;
+                ts.GIATRI = giatri;
+
+                db.THONGSO_KYTHUATs.Add(ts);
+                db.SaveChanges();
+            }
+            // Load lại trang Edit
+            return RedirectToAction("EditProduct", new { id = masp });
+        }
+
+        public ActionResult XoaThongSo(int id)
+        {
+            var ts = db.THONGSO_KYTHUATs.Find(id);
+            if (ts != null)
+            {
+                string masp = ts.MASP;
+                db.THONGSO_KYTHUATs.Remove(ts);
+                db.SaveChanges();
+                return RedirectToAction("EditProduct", new { id = masp });
+            }
+            return RedirectToAction("Products");
+        }
+        public ActionResult SuaThongSo(int id)
+        {
+            var ts = db.THONGSO_KYTHUATs.Find(id);
+            if (ts == null) return HttpNotFound();
+
+            ViewBag.Title = "Cập nhật thông số";
+            return View(ts);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SuaThongSo(THONGSO_KYTHUAT model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return RedirectToAction("EditProduct", new { id = model.MASP });
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult ProcessUpload(HttpPostedFileBase upload)
+        {
+            if (upload != null && upload.ContentLength > 0)
+            {
+                // 1. Đặt tên file ảnh (Dùng Guid để không bị trùng tên)
+                string tenFile = Guid.NewGuid().ToString() + "_" + Path.GetFileName(upload.FileName);
+
+                // 2. Lưu vào thư mục ảnh sản phẩm cũ của bạn
+                string path = Path.Combine(Server.MapPath("~/Content/Assets/Product_Images"), tenFile);
+                upload.SaveAs(path);
+
+                // 3. Trả về JSON theo đúng chuẩn mà CKEditor yêu cầu
+                // (Nó bắt buộc phải trả về: uploaded = 1 và url = đường dẫn ảnh)
+                return Json(new
+                {
+                    uploaded = 1,
+                    fileName = tenFile,
+                    url = "/Content/Assets/Product_Images/" + tenFile
+                });
+            }
+
+            // Nếu lỗi
+            return Json(new { uploaded = 0, error = new { message = "Lỗi tải ảnh lên server!" } });
+        }
+
+
+
+
+
+
+
+
+
+
     }
 }

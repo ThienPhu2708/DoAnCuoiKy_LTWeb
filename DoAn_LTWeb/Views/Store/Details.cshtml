@@ -9,17 +9,15 @@
     decimal defaultOldPrice = 0;
     if (firstVariant != null)
     {
-        defaultPrice = firstVariant.GIABAN ?? 0; // Lấy giá bán
-        defaultOldPrice = firstVariant.GIAGOC ?? 0; // [SỬA LẠI] Lấy giá gốc
+        defaultPrice = firstVariant.GIABAN ?? 0;
+        defaultOldPrice = firstVariant.GIAGOC ?? 0;
     }
 }
 
 <div class="container py-5">
-
     <nav aria-label="breadcrumb" class="mb-4">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="@Url.Action("Index", "Home")" class="text-decoration-none">Trang chủ</a></li>
-
             @if (Model.LOAISANPHAM.LOAISANPHAM2 != null)
             {
                 <li class="breadcrumb-item">
@@ -28,18 +26,16 @@
                     </a>
                 </li>
             }
-
             <li class="breadcrumb-item">
                 <a href="@Url.Action("Index", "Store", new { id = Model.LOAISANPHAM.MALOAI })" class="text-decoration-none">
                     @Model.LOAISANPHAM.TENLOAI
                 </a>
             </li>
-
             <li class="breadcrumb-item active" aria-current="page">@Model.TENSP</li>
         </ol>
     </nav>
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-md-6 mb-4">
             <div class="card border-0 shadow-sm mb-3">
                 <img id="mainImage" src="~/Content/Assets/Product_Images/@Model.ANHBIA" class="card-img-top p-3" alt="@Model.TENSP" style="height: 400px; object-fit: contain;">
@@ -84,7 +80,8 @@
             </div>
 
             <div class="mb-4 text-secondary">
-                @Html.Raw(Model.MOTA.Replace("\n", "<br>"))
+                @Html.Raw(Model.MOTA.Replace("\n", "<br>").Length > 200 ? Model.MOTA.Substring(0, 200) + "..." : Model.MOTA)
+                <a href="#tab-desc" onclick="switchTab('desc'); document.getElementById('tab-desc').scrollIntoView();" class="text-primary small">Xem chi tiết bên dưới</a>
             </div>
 
             <form action="@Url.Action("AddToCart", "Cart")" method="post">
@@ -97,14 +94,9 @@
                         @using System.Globalization <select class="form-select w-75 border-danger" id="variantSelect" name="variantId">
                             @foreach (var variant in Model.SANPHAM_BIENTHE)
                             {
-                                // [SỬA LẠI] Kiểm tra NULL cho an toàn
                                 var priceString = variant.GIABAN.HasValue ? variant.GIABAN.Value.ToString("F0", CultureInfo.InvariantCulture) : "0";
                                 var oldPriceString = variant.GIAGOC.HasValue ? variant.GIAGOC.Value.ToString("F0", CultureInfo.InvariantCulture) : "0";
-
-                                // [SỬA LẠI] Kiểm tra ảnh biến thể. Nếu NULL, dùng ảnh cha (ANHBIA)
-                                var variantImage = !string.IsNullOrEmpty(variant.ANH_BIENTHE)
-                                                 ? variant.ANH_BIENTHE
-                                                 : Model.ANHBIA; // Dùng ảnh cha làm ảnh dự phòng
+                                var variantImage = !string.IsNullOrEmpty(variant.ANH_BIENTHE) ? variant.ANH_BIENTHE : Model.ANHBIA;
 
                                 <option value="@variant.MABIENTHE"
                                         data-price="@priceString"
@@ -117,7 +109,6 @@
                     </div>
                 }
 
-                @*Hiển thị thông báo thêm vào giỏ hàng thành công*@
                 @if (TempData["SuccessMessage"] != null)
                 {
                     <div id="success-alert" class="alert alert-success alert-dismissible fade show shadow-sm mt-3" role="alert">
@@ -126,27 +117,21 @@
                     </div>
                 }
 
-
-                @*Thêm vào giỏ và mua ngay*@
                 <div class="d-flex gap-3 mt-4">
-
                     <div class="input-group" style="width: 120px;">
                         <button class="btn btn-outline-secondary" type="button" onclick="if(qty.value>1) qty.value--">-</button>
                         <input type="text" id="qty" name="quantity" class="form-control text-center" value="1">
                         <button class="btn btn-outline-secondary" type="button" onclick="qty.value++">+</button>
                     </div>
 
-                    <button type="submit" name="type" value="add" class="btn btn-info btn-lg shadow-sm px-4 text-white fw-bold" formtarget="_self">
+                    <button type="submit" name="type" value="add" class="btn btn-info btn-lg shadow-sm px-4 text-white fw-bold">
                         <i class="fas fa-cart-plus me-2"></i> THÊM VÀO GIỎ
                     </button>
 
-                    <button type="submit" name="type" value="buynow" class="btn btn-danger btn-lg shadow-sm px-4 fw-bold" formtarget="_self">
+                    <button type="submit" name="type" value="buynow" class="btn btn-danger btn-lg shadow-sm px-4 fw-bold">
                         <i class="fas fa-check-circle me-2"></i> MUA NGAY
                     </button>
                 </div>
-
-
-
             </form>
 
             <div class="row mt-5 g-2 small">
@@ -157,25 +142,77 @@
             </div>
         </div>
     </div>
+    <div class="mt-5 bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-5">
+
+        <div class="d-flex border-bottom bg-light">
+            <button onclick="switchTab('desc')" id="tab-desc" class="py-3 px-4 fw-bold text-primary border-bottom border-primary bg-white border-3" style="border:none; border-bottom: 3px solid blue;">
+                Mô tả chi tiết
+            </button>
+            <button onclick="switchTab('specs')" id="tab-specs" class="py-3 px-4 fw-bold text-secondary" style="border:none; background:none;">
+                Thông số kỹ thuật
+            </button>
+        </div>
+
+        <div class="p-4">
+            <div id="content-desc">
+                @if (!string.IsNullOrEmpty(Model.MOTA))
+                {
+                    @Html.Raw(Model.MOTA)
+                }
+                else
+                {
+                    <p class="text-muted fst-italic">Đang cập nhật mô tả...</p>
+                }
+            </div>
+
+            <div id="content-specs" class="d-none">
+                @if (Model.THONGSO_KYTHUATs != null && Model.THONGSO_KYTHUATs.Count > 0)
+                {
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <tbody>
+                                @foreach (var group in Model.THONGSO_KYTHUATs.GroupBy(t => t.NHOM_THONGSO))
+                                {
+                                    <tr class="table-secondary">
+                                        <td colspan="2" class="fw-bold text-uppercase">
+                                            @(string.IsNullOrEmpty(group.Key) ? "Thông số chung" : group.Key)
+                                        </td>
+                                    </tr>
+                                    foreach (var item in group)
+                                    {
+                                        <tr>
+                                            <td class="fw-bold text-secondary" style="width: 30%;">@item.TEN_THONGSO</td>
+                                            <td>@item.GIATRI</td>
+                                        </tr>
+                                    }
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
+                else
+                {
+                    <p class="text-muted fst-italic text-center">Chưa có thông số kỹ thuật.</p>
+                }
+            </div>
+        </div>
+    </div>
+
 
     @if (ViewBag.RelatedProducts != null)
     {
-
         <div class="mt-5">
             <h3 class="fw-bold text-uppercase border-bottom pb-2 border-danger mb-4">Sản phẩm liên quan</h3>
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 @foreach (var item in ViewBag.RelatedProducts as List<DoAn_LTWeb.Models.SANPHAM>)
                 {
-
                     var rPrice = item.SANPHAM_BIENTHE.FirstOrDefault()?.GIABAN ?? 0;
-                    <a href="@Url.Action("Details", "Store", new { id = item.MASP })" class=" text-decoration-none text-dark">
+                    <a href="@Url.Action("Details", "Store", new { id = item.MASP })" class="text-decoration-none text-dark">
                         <div class="col">
                             <div class="card h-100 shadow-sm border-0 product-card">
                                 <img src="~/Content/Assets/Product_Images/@item.ANHBIA" class="card-img-top p-3" style="height: 180px; object-fit: contain;">
                                 <div class="card-body text-center">
-                                    <h6 class="card-title text-truncate">
-                                        @item.TENSP
-                                    </h6>
+                                    <h6 class="card-title text-truncate">@item.TENSP</h6>
                                     <p class="text-danger fw-bold">@(rPrice > 0 ? ((decimal)rPrice).ToString("#,##0") + " đ" : "Liên hệ")</p>
                                 </div>
                             </div>
@@ -185,12 +222,39 @@
             </div>
         </div>
     }
+
 </div>
+<script>
+    function switchTab(tabName) {
+        // 1. Ẩn hiện nội dung
+        if (tabName === 'desc') {
+            document.getElementById('content-desc').classList.remove('d-none');
+            document.getElementById('content-specs').classList.add('d-none');
 
+            // Style nút
+            document.getElementById('tab-desc').classList.add('text-primary', 'border-bottom', 'border-3', 'border-primary', 'bg-white');
+            document.getElementById('tab-desc').classList.remove('text-secondary');
 
+            document.getElementById('tab-specs').classList.remove('text-primary', 'border-bottom', 'border-3', 'border-primary', 'bg-white');
+            document.getElementById('tab-specs').classList.add('text-secondary');
+            document.getElementById('tab-specs').style.borderBottom = "none";
+            document.getElementById('tab-desc').style.borderBottom = "3px solid blue";
 
+        } else {
+            document.getElementById('content-desc').classList.add('d-none');
+            document.getElementById('content-specs').classList.remove('d-none');
 
+            // Style nút
+            document.getElementById('tab-specs').classList.add('text-primary', 'border-bottom', 'border-3', 'border-primary', 'bg-white');
+            document.getElementById('tab-specs').classList.remove('text-secondary');
 
+            document.getElementById('tab-desc').classList.remove('text-primary', 'border-bottom', 'border-3', 'border-primary', 'bg-white');
+            document.getElementById('tab-desc').classList.add('text-secondary');
+            document.getElementById('tab-desc').style.borderBottom = "none";
+            document.getElementById('tab-specs').style.borderBottom = "3px solid blue";
+        }
+    }
+</script>
 
 @section scripts {
     <script>
@@ -202,21 +266,16 @@
         }
 
         $(document).ready(function () {
-
             function updateProductDetails() {
                 var selectedOption = $('#variantSelect').find(':selected');
-
-                // --- A. Lấy dữ liệu từ data- attributes ---
                 var priceString = selectedOption.data('price');
                 var oldPriceString = selectedOption.data('oldprice');
-                var imageSrc = selectedOption.data('image'); // [MỚI] Lấy đường dẫn ảnh
+                var imageSrc = selectedOption.data('image');
 
-                // --- B. [FIX LỖI] Cập nhật Ảnh ---
                 if (imageSrc) {
                     $('#mainImage').attr('src', imageSrc);
                 }
 
-                // --- C. Cập nhật Giá (Fix lỗi NaN) ---
                 var price = parseFloat(priceString);
                 var oldPrice = parseFloat(oldPriceString);
 
@@ -230,19 +289,15 @@
                     } else {
                         $('#displayOldPrice').hide();
                     }
-                }
-                else {
+                } else {
                     $('#displayPrice').text('Liên hệ');
                     $('#displayOldPrice').hide();
                 }
             }
 
-            // Gán sự kiện 'change'
             $('#variantSelect').change(updateProductDetails);
-
-            // Kích hoạt 'change' ngay khi tải trang để load giá/ảnh đầu tiên
             updateProductDetails();
-            //tự động tắt thông báo sau hai giây
+
             var alertBox = $("#success-alert");
             if (alertBox.length > 0) {
                 setTimeout(function () {
@@ -251,9 +306,6 @@
                     });
                 }, 1000);
             }
-
-
-
         });
     </script>
 }

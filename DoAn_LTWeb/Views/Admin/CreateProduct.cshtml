@@ -14,110 +14,212 @@
     {
         @Html.AntiForgeryToken()
 
-    <div class="bg-white p-6 rounded-xl shadow-lg">
+        <div class="bg-white p-6 rounded-xl shadow-lg">
 
-        @Html.ValidationSummary(true, "", new { @class = "text-red-600 bg-red-50 p-3 rounded-lg text-sm mb-4" })
+            @Html.ValidationSummary(true, "", new { @class = "text-red-600 bg-red-50 p-3 rounded-lg text-sm mb-4" })
 
-        <!-- Hàng 1: Tên sản phẩm -->
-        <div>
-            @Html.LabelFor(model => model.SanPham.TENSP, "Tên Sản phẩm", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.EditorFor(model => model.SanPham.TENSP, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" } })
-            @Html.ValidationMessageFor(model => model.SanPham.TENSP, "", new { @class = "text-red-600 text-xs mt-1" })
-        </div>
-
-        <!-- Hàng 1: Nhập mã sản phẩm -->
-        <div>
-            @Html.LabelFor(model => model.SanPham.MASP, "Mã Sản Phẩm (SKU)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.EditorFor(model => model.SanPham.MASP, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" } })
-            @Html.ValidationMessageFor(model => model.SanPham.MASP, "", new { @class = "text-red-600 text-xs mt-1" })
-        </div>
-        <!-- Hàng 1: Nhập biến thể -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Hàng 1: Tên sản phẩm -->
             <div>
-                @Html.LabelFor(model => model.BienThe.TENBIENTHE, "Tên Biến thể (Vd: Màu Đen)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-                @Html.EditorFor(model => model.BienThe.TENBIENTHE, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg ..." } })
-                @Html.ValidationMessageFor(model => model.BienThe.TENBIENTHE, "", new { @class = "text-red-600 text-xs mt-1" })
+                @Html.LabelFor(model => model.SanPham.TENSP, "Tên Sản phẩm", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.EditorFor(model => model.SanPham.TENSP, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" } })
+                @Html.ValidationMessageFor(model => model.SanPham.TENSP, "", new { @class = "text-red-600 text-xs mt-1" })
             </div>
+
+            <!-- Hàng 1: Nhập mã sản phẩm -->
             <div>
-                @Html.LabelFor(model => model.BienThe.SOLUONGTON, "Số lượng tồn", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-                @Html.EditorFor(model => model.BienThe.SOLUONGTON, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg ...", type = "number", min = "0" } })
-                @Html.ValidationMessageFor(model => model.BienThe.SOLUONGTON, "", new { @class = "text-red-600 text-xs mt-1" })
+                @Html.LabelFor(model => model.SanPham.MASP, "Mã Sản Phẩm (SKU)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                @Html.EditorFor(model => model.SanPham.MASP, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" } })
+                @Html.ValidationMessageFor(model => model.SanPham.MASP, "", new { @class = "text-red-600 text-xs mt-1" })
             </div>
-        </div>
-
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <div>
-                @Html.LabelFor(model => model.BienThe.GIAGOC, "Giá Gốc (VNĐ)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-                @Html.EditorFor(model => model.BienThe.GIAGOC, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg", type = "number", min = "0" } })
-                @Html.ValidationMessageFor(model => model.BienThe.GIAGOC, "", new { @class = "text-red-600 text-xs mt-1" })
+            <!-- Hàng 1: Nhập biến thể -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    @Html.LabelFor(model => model.BienThe.TENBIENTHE, "Tên Biến thể (Vd: Màu Đen)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                    @Html.EditorFor(model => model.BienThe.TENBIENTHE, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg ..." } })
+                    @Html.ValidationMessageFor(model => model.BienThe.TENBIENTHE, "", new { @class = "text-red-600 text-xs mt-1" })
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.BienThe.SOLUONGTON, "Số lượng tồn", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                    @Html.EditorFor(model => model.BienThe.SOLUONGTON, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg ...", type = "number", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.BienThe.SOLUONGTON, "", new { @class = "text-red-600 text-xs mt-1" })
+                </div>
             </div>
-            <div>
-                @Html.LabelFor(model => model.BienThe.GIABAN, "Giá Bán (VNĐ)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-                @Html.EditorFor(model => model.BienThe.GIABAN, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg ...", type = "number", min = "0" } })
-                @Html.ValidationMessageFor(model => model.BienThe.GIABAN, "", new { @class = "text-red-600 text-xs mt-1" })
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div>
+                    @Html.LabelFor(model => model.BienThe.GIAGOC, "Giá Gốc (VNĐ)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                    @Html.EditorFor(model => model.BienThe.GIAGOC, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg", type = "number", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.BienThe.GIAGOC, "", new { @class = "text-red-600 text-xs mt-1" })
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.BienThe.GIABAN, "Giá Bán (VNĐ)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                    @Html.EditorFor(model => model.BienThe.GIABAN, new { htmlAttributes = new { @class = "w-full p-2 border border-gray-300 rounded-lg ...", type = "number", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.BienThe.GIABAN, "", new { @class = "text-red-600 text-xs mt-1" })
+                </div>
             </div>
-        </div>
 
 
 
-        <!-- Hàng 2: Loại SP và Thương hiệu -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <div>
-                @Html.LabelFor(model => model.SanPham.MALOAI, "Loại sản phẩm", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-                @Html.DropDownListFor(model => model.SanPham.MALOAI, (IEnumerable<SelectListItem>)ViewBag.MALOAI, "--- Chọn loại sản phẩm ---", new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
-                @Html.ValidationMessageFor(model => model.SanPham.MALOAI, "", new { @class = "text-red-600 text-xs mt-1" })
+            <!-- Hàng 2: Loại SP và Thương hiệu -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <div>
+                    @Html.LabelFor(model => model.SanPham.MALOAI, "Loại sản phẩm", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                    @Html.DropDownListFor(model => model.SanPham.MALOAI, (IEnumerable<SelectListItem>)ViewBag.MALOAI, "--- Chọn loại sản phẩm ---", new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
+                    @Html.ValidationMessageFor(model => model.SanPham.MALOAI, "", new { @class = "text-red-600 text-xs mt-1" })
+                </div>
+                <div>
+                    @Html.LabelFor(model => model.SanPham.MATHUONGHIEU, "Thương hiệu", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+                    <div class="flex gap-2">
+                        @Html.DropDownListFor(model => model.SanPham.MATHUONGHIEU, (IEnumerable<SelectListItem>)ViewBag.MATHUONGHIEU, "--- Chọn thương hiệu ---", new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400", @id = "ddlThuongHieu" })
+
+                        <button type="button" onclick="moModalThuongHieu()" class="px-3 py-2 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-lg border border-gray-300" title="Thêm thương hiệu mới">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.SanPham.MATHUONGHIEU, "", new { @class = "text-red-600 text-xs mt-1" })
+                </div>
             </div>
-            <div>
-                @Html.LabelFor(model => model.SanPham.MATHUONGHIEU, "Thương hiệu", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-                @Html.DropDownListFor(model => model.SanPham.MATHUONGHIEU, (IEnumerable<SelectListItem>)ViewBag.MATHUONGHIEU, "--- Chọn thương hiệu ---", new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" })
-                @Html.ValidationMessageFor(model => model.SanPham.MATHUONGHIEU, "", new { @class = "text-red-600 text-xs mt-1" })
+
+            <!-- Hàng 3: Mô tả -->
+            <div class="mt-6">
+                @Html.LabelFor(model => model.SanPham.MOTA, "Mô tả chi tiết", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+
+                @Html.TextAreaFor(model => model.SanPham.MOTA, new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400", rows = 10, id = "txtMoTa" })
+
+                @Html.ValidationMessageFor(model => model.SanPham.MOTA, "", new { @class = "text-red-600 text-xs mt-1" })
             </div>
-        </div>
 
-        <!-- Hàng 3: Mô tả -->
-        <div class="mt-6">
-            @Html.LabelFor(model => model.SanPham.MOTA, "Mô tả", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
-            @Html.TextAreaFor(model => model.SanPham.MOTA, new { @class = "w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400", rows = 5 })
-            @Html.ValidationMessageFor(model => model.SanPham.MOTA, "", new { @class = "text-red-600 text-xs mt-1" })
-        </div>
+            @section Scripts {
+                <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+                <script>
+                    CKEDITOR.replace('txtMoTa', {
+                        height: 400,
+
+                        // Dòng này bật tính năng Upload
+                        filebrowserUploadUrl: '/Admin/ProcessUpload',
+
+                        // Dòng này cho phép Paste ảnh (Ctrl+V) trực tiếp
+                        uploadUrl: '/Admin/ProcessUpload',
+
+                        // Xóa bớt mấy cái tab dư thừa trong khung chèn ảnh cho gọn
+                        removeDialogTabs: 'image:advanced;image:Link'
+                    });
+                </script>
+            }
 
 
 
-        <!-- Hàng 5: Ảnh bìa -->
-        <div class="mt-6">
-            @Html.LabelFor(model => model.AnhBiaFile, "Tải lên ảnh bìa (Ảnh chính)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            <!-- Hàng 5: Ảnh bìa -->
+            <div class="mt-6">
+                @Html.LabelFor(model => model.AnhBiaFile, "Tải lên ảnh bìa (Ảnh chính)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
 
-            <input type="file" name="AnhBiaFile" id="AnhBiaFile" class="block w-full text-sm text-gray-500
+                <input type="file" name="AnhBiaFile" id="AnhBiaFile" class="block w-full text-sm text-gray-500
             file:mr-4 file:py-2 file:px-4
             file:rounded-lg file:border-0
             file:text-sm file:font-semibold
             file:bg-blue-50 file:text-blue-700
             hover:file:bg-blue-100" />
 
-            @Html.ValidationMessageFor(model => model.AnhBiaFile, "", new { @class = "text-red-600 text-xs mt-1" })
-        </div>
+                @Html.ValidationMessageFor(model => model.AnhBiaFile, "", new { @class = "text-red-600 text-xs mt-1" })
+            </div>
 
-        <div class="mt-6">
-            @Html.LabelFor(model => model.GalleryFiles, "Tải lên ảnh Gallery (Chọn nhiều ảnh)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
+            <div class="mt-6">
+                @Html.LabelFor(model => model.GalleryFiles, "Tải lên ảnh Gallery (Chọn nhiều ảnh)", new { @class = "block text-sm font-medium text-gray-700 mb-1" })
 
-            <input type="file" name="GalleryFiles" id="GalleryFiles" multiple
-                   class="block w-full text-sm text-gray-500
+                <input type="file" name="GalleryFiles" id="GalleryFiles" multiple
+                       class="block w-full text-sm text-gray-500
                           file:mr-4 file:py-2 file:px-4
                           file:rounded-lg file:border-0
                           file:text-sm file:font-semibold
                           file:bg-gray-50 file:text-gray-700
                           hover:file:bg-gray-100" />
+            </div>
+
+            <div class="flex items-center justify-end space-x-4 pt-5 border-t border-gray-200 mt-6">
+                @Html.ActionLink("Quay lại", "Products", "Admin", null, new { @class = "px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition" })
+
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition flex items-center">
+                    <i class="fas fa-save mr-2"></i>
+                    Tạo mới Sản phẩm
+                </button>
+            </div>
+        </div>
+    }
+</section>
+<div id="modalBrand" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-xl w-96">
+        <h3 class="text-lg font-bold mb-4 text-gray-800">Thêm Thương Hiệu Mới</h3>
+
+        <div class="mb-4">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Tên thương hiệu</label>
+            <input type="text" id="txtNewBrandName" class="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500" placeholder="Nhập tên..." />
         </div>
 
-        <div class="flex items-center justify-end space-x-4 pt-5 border-t border-gray-200 mt-6">
-            @Html.ActionLink("Quay lại", "Products", "Admin", null, new { @class = "px-4 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition" })
-
-            <button type="submit" class="px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition flex items-center">
-                <i class="fas fa-save mr-2"></i>
-                Tạo mới Sản phẩm
+        <div class="flex justify-end gap-2">
+            <button type="button" onclick="dongModalThuongHieu()" class="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Hủy</button>
+            <button type="button" onclick="luuThuongHieuMoi()" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                Lưu
             </button>
         </div>
     </div>
+</div>
+<script>
+    // Hàm mở Modal
+    function moModalThuongHieu() {
+        document.getElementById('modalBrand').classList.remove('hidden');
+        document.getElementById('txtNewBrandName').focus();
     }
-</section>
+
+    // Hàm đóng Modal
+    function dongModalThuongHieu() {
+        document.getElementById('modalBrand').classList.add('hidden');
+        document.getElementById('txtNewBrandName').value = '';
+    }
+
+    // --- HÀM LƯU MỚI (DÙNG FETCH API - KHÔNG CẦN JQUERY) ---
+    function luuThuongHieuMoi() {
+        var ten = document.getElementById('txtNewBrandName').value;
+        if (!ten) { alert('Vui lòng nhập tên thương hiệu!'); return; }
+
+        // Tạo dữ liệu gửi đi
+        var formData = new FormData();
+        formData.append('tenThuongHieu', ten);
+
+        // Gọi về Server
+        fetch('/Admin/QuickAddBrand', {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => response.json()) // Chờ server trả lời
+            .then(res => {
+                if (res.success) {
+                    // 1. Tạo thẻ option mới
+                    var newOption = document.createElement("option");
+                    newOption.text = res.name;
+                    newOption.value = res.id;
+                    newOption.selected = true; // Chọn luôn nó
+
+                    // 2. Thêm vào Dropdown
+                    var ddl = document.getElementById('ddlThuongHieu');
+                    if (ddl) {
+                        ddl.add(newOption);
+                        // Nếu dropdow đang bị disable hay gì đó thì update lại giao diện ở đây (nếu cần)
+                    }
+
+                    // 3. Đóng modal
+                    dongModalThuongHieu();
+
+                    // 4. Báo thành công nhẹ nhàng (Optional)
+                    // alert('Đã thêm: ' + res.name);
+                } else {
+                    alert('Lỗi: ' + res.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert("Lỗi kết nối server! Hãy kiểm tra lại Controller.");
+            });
+    }
+</script>

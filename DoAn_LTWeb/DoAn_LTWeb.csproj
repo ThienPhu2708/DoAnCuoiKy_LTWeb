@@ -156,6 +156,7 @@
     <Compile Include="Models\SANPHAM.cs" />
     <Compile Include="Models\SANPHAM_BIENTHE.cs" />
     <Compile Include="Models\sysdiagram.cs" />
+    <Compile Include="Models\THONGSO_KYTHUAT.cs" />
     <Compile Include="Models\THUONGHIEU.cs" />
     <Compile Include="Models\TINTUC.cs" />
     <Compile Include="Models\VAITRO.cs" />
@@ -250,6 +251,7 @@
     <Content Include="Views\Admin\Statistics.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Admin\SuaThongSo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
