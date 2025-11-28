@@ -1,4 +1,4 @@
-﻿﻿@model DoAn_LTWeb.Models.DONDATHANG
+﻿@model DoAn_LTWeb.Models.DONDATHANG
 
 @{
     ViewBag.Title = "Chi tiết Đơn hàng";
@@ -47,18 +47,19 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 h-16 w-16">
+                                                <!-- [UPDATE] Xử lý hiển thị ảnh với fallback -->
                                                 <img class="h-16 w-16 rounded-lg object-cover shadow"
-                                                     src="@Url.Content(item.SANPHAM_BIENTHE?.SANPHAM?.ANHBIA ?? "https://placehold.co/64x64/E2E8F0/A0AEC0?text=Img")"
+                                                     src="@(!string.IsNullOrEmpty(item.SANPHAM_BIENTHE?.SANPHAM?.ANHBIA) ? Url.Content("~/Content/Assets/Product_Images/" + item.SANPHAM_BIENTHE.SANPHAM.ANHBIA) : "https://placehold.co/64x64/E2E8F0/A0AEC0?text=No+Img")"
                                                      alt="@item.SANPHAM_BIENTHE?.SANPHAM?.TENSP"
                                                      onerror="this.src='https://placehold.co/64x64/E2E8F0/A0AEC0?text=Error'; this.onerror=null;" />
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm font-medium text-gray-900">
-                                                    @item.SANPHAM_BIENTHE?.SANPHAM?.TENSP
+                                                    @(item.SANPHAM_BIENTHE?.SANPHAM?.TENSP ?? "Sản phẩm không xác định")
                                                 </div>
-                                                <div class="text-sm text-gray-500">
-                                                    Mã Biến thể: @item.MABIENTHE
-                                                </div>
+                                                @*<div class="text-sm text-gray-500">
+                                                        Biến thể: @(item.SANPHAM_BIENTHE?.TENBIENTHE ?? item.MABIENTHE)
+                                                    </div>*@
                                             </div>
                                         </div>
                                     </td>
@@ -112,6 +113,7 @@
                                 case "pending":
                                     statusClass = "bg-yellow-100 text-yellow-800";
                                     break;
+                                case "đang giao hàng":
                                 case "đang giao":
                                 case "shipping":
                                 case "đã xác nhận":

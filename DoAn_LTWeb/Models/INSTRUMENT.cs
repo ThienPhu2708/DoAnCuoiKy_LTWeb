@@ -25,7 +25,7 @@ namespace DoAn_LTWeb.Models
         public virtual DbSet<TINTUC> TINTUCs { get; set; }
         public virtual DbSet<THUONGHIEU> THUONGHIEUs { get; set; }
         public virtual DbSet<VAITRO> VAITROes { get; set; }
-
+        public virtual DbSet<THONGSO_KYTHUAT> THONGSO_KYTHUATs { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<CHITIETDONDATHANG>()
@@ -92,6 +92,14 @@ namespace DoAn_LTWeb.Models
                 .HasMany(e => e.CHITIETDONDATHANGs)
                 .WithRequired(e => e.SANPHAM_BIENTHE)
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<THONGSO_KYTHUAT>()
+                .Property(e => e.MASP)
+                .IsUnicode(false);
+            modelBuilder.Entity<SANPHAM>()
+                .HasMany(e => e.THONGSO_KYTHUATs)
+                .WithOptional(e => e.SANPHAM)
+                .HasForeignKey(e => e.MASP)
+                .WillCascadeOnDelete(true);
         }
     }
 }
